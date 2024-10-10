@@ -1,4 +1,6 @@
-﻿namespace TaxiApplication.WEB.Areas.User.Controllers
+﻿using TaxiApplication.Domain.Entity;
+
+namespace TaxiApplication.WEB.Areas.User.Controllers
 {
     [Area("Admin")]
     public class AdminController : Controller
@@ -82,9 +84,9 @@
 
             if (response.StatusCode == Domain.Enum.StatusCode.OK)
             {
-                return RedirectToAction("GetTaxiOrdersForAdmin");
+                return RedirectToAction("Index");
             }
-            return View();
+            return RedirectToAction("Index", "Home", new { area = ""});
         }
 
         [HttpPost]
