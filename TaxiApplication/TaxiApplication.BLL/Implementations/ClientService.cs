@@ -1,4 +1,6 @@
-﻿namespace TaxiApplication.BLL.Implementations;
+﻿using TaxiApplication.Domain.Entity;
+
+namespace TaxiApplication.BLL.Implementations;
 
 public class ClientService : IClientService
 {
@@ -185,10 +187,22 @@ public class ClientService : IClientService
 				{
 					Description = "Пользователь отсутсвует.",
 					StatusCode = StatusCode.UserNotFound
-				};
-			}
+                };
+            }
 
-			return new BaseResponse<Client>()
+            var profile = await _unitOfWork.ClientProfileRepository.FirstOrDefaultAsync(cl => cl.ClientId == RealClient.Id);
+
+            if (profile == null)
+            {
+                return new BaseResponse<Client>()
+                {
+                    StatusCode = StatusCode.AllError,
+                    Description = $"Пользователь с таким профилем не найден."
+                };
+            }
+            RealClient.Profile = profile;
+
+            return new BaseResponse<Client>()
 			{
 				Data = RealClient,
 				StatusCode = StatusCode.OK
