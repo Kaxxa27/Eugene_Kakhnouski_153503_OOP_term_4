@@ -6,10 +6,10 @@
 
 <div class="add-user-form">
 
-    <h1 class="login-style-size-50 ">Изменение пользователя</h1>
+    <h1 class="login-style-size-50 ">Изменение профиля</h1>
 
     <div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-4">
             <div>
                 @if (Model.Profile.Photo != null && Model.Profile.Photo.Length > 0)
                 {
@@ -23,13 +23,12 @@
                 <p>
                     <form asp-controller="Client" asp-action="UploadPhoto" asp-area="Client" method="post" enctype="multipart/form-data">
                         <input class="photo-input" type="file" name="photoFile" />
-                        <button class="photo-btn" type="submit">Сохранить фото</button>
+                        <p><button class="photo-btn" type="submit">Сохранить фото</button></p> 
                     </form>
                 </p>
             </div>
         </div>
-        <div class="col-sm-6">
-
+        <div class="col-sm-8">
             <fieldset form="ProfileEdit_Form">
                 <p>
                     <div class="add-user-name-surname-div">
@@ -98,33 +97,41 @@
             </fieldset>
         </div>
     </div>
+
+
+
+
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
+            <form asp-action="DeleteProfile" asp-controller="Client" asp-area="Client">
 
+                <input hidden="hidden" name="Role" value="@TaxiApplication.Domain.Enum.Role.Client" />
+                <input hidden="hidden" name="Id" value="@Model.Id" />
+                <input hidden="hidden" name="Profile.Id" value="@Model.Profile.Id" />
+                <input hidden="hidden" name="Profile.ClientId" value="@Model.Profile.ClientId" />
+                <p>
+                    <div>
+                        <button class="btn-block cancel-btn" type="submit">Удалить профиль</button>
+                    </div>
+                </p>
+            </form>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
+            <form asp-action="ProfileEdit" asp-controller="Client" asp-area="Client" id="ProfileEdit_Form">
 
+                <input hidden="hidden" name="Role" value="@TaxiApplication.Domain.Enum.Role.Client" />
+                <input hidden="hidden" name="Id" value="@Model.Id" />
+                <input hidden="hidden" name="Profile.Id" value="@Model.Profile.Id" />
+                <input hidden="hidden" name="Profile.ClientId" value="@Model.Profile.ClientId" />
+                <p>
+                    <div>
+                        <button class="btn-block standart-btn" type="submit">Сохранить</button>
+                    </div>
+                </p>
+            </form>
         </div>
     </div>
-
    
-
-
-    <form asp-action="ProfileEdit" asp-controller="Client" asp-area="Client" id="ProfileEdit_Form">
-       
-
-        <input hidden="hidden" name="Role" value="@TaxiApplication.Domain.Enum.Role.Client" />
-        <input hidden="hidden" name="Id" value="@Model.Id" />
-        <input hidden="hidden" name="Profile.Id" value="@Model.Profile.Id" />
-        <input hidden="hidden" name="Profile.ClientId" value="@Model.Profile.ClientId" />
-        <p>
-            <div>
-                <button class="btn-block standart-btn" type="submit">Сохранить</button>
-            </div>
-        </p>
-    </form>
-
-
 </div>
 
 
