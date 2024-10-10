@@ -112,4 +112,4 @@ Project author: [Eugene_Kakhnouski](https://github.com/Kaxxa27).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
