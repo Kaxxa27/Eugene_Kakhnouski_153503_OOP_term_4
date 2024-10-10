@@ -13,8 +13,10 @@
 	<link rel="stylesheet" href="~/css/_layout.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/map_index.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/create_order.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/tables/table_outgoing_fields.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/tables/table_cross_selection.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/buttons/standart_button.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/TaxiApplication.WEB.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -48,7 +50,7 @@
 							{
 								<a class="nav-link active" aria-current="page" asp-controller="Admin" asp-action="Index" asp-area="Admin">Список клиентов</a>
 								<a class="nav-link active" aria-current="page" asp-controller="Admin" asp-action="AdminPanel" asp-area="Admin">Админ панель</a>
-								<a class="nav-link active" aria-current="page" asp-controller="Admin" asp-action="AddClient" asp-area="Admin">AddClient</a>
+								<a class="nav-link active" aria-current="page" asp-controller="Admin" asp-action="AddClient" asp-area="Admin">Добавить пользователя</a>
 							}
 							else if (User.IsInRole(TaxiApplication.Domain.Enum.Role.Client.ToString()))
 							{

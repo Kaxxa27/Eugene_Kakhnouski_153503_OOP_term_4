@@ -4,35 +4,51 @@
     
 }
 
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Login</th>
-                <th>Password</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Age</th>
-                <th>Email</th>
-                <th>Phone</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model.ToList())
-            {
-                <tr>
-                    <td>@user.Id</td>
-                    <td>@user.Login</td>
-                    <td>@user.Password</td>
-                    <td>@user.Profile.Name</td>
-                    <td>@user.Profile.Surname</td>
-                    <td>@user.Profile.Age</td>
-                    <td>@user.Profile.Email</td>
-                    <td>@user.Profile.PhoneNumber</td>            
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="container-for-table-cross-sel">
+        <div class="table-cross-sel-div">
+            <table class="table-cross-sel">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Login</th>
+                        <th>Password</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.ToList())
+                    {
+                        if(user.Role is not TaxiApplication.Domain.Enum.Role.Admin)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.Login</td>
+                                <td>@user.Password</td>
+                                <td>@user.Profile.Name</td>
+                                <td>@user.Profile.Surname</td>
+                                <td>@user.Profile.Age</td>
+                                <td>@user.Profile.Email</td>
+                                <td>@user.Profile.PhoneNumber</td>
+                            </tr>
+                        }             
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>
+
 
