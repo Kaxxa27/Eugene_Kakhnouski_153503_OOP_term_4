@@ -5,7 +5,6 @@ public class TaxiApplicationDbContext : DbContext
 	public DbSet<User> Users { get; set; }
 	public DbSet<Client> Clients { get; set; }
 	public DbSet<ClientProfile> clientProfiles { get; set; }
-	//public DbSet<UserProfile> userProfiles { get; set; }
 	public TaxiApplicationDbContext(DbContextOptions<TaxiApplicationDbContext> dbContextOptions) : base(dbContextOptions)
 	{
 		//Database.EnsureDeleted();
@@ -22,15 +21,7 @@ public class TaxiApplicationDbContext : DbContext
 
 		User Admin = new User
 		{
-			Id = 1,
-			//Profile = new ClientProfile 
-			//{
-			//    ClientId = 1,
-			//	Name = "Евгений",
-			//	Surname = "Кахновский",
-			//	Email = "Kaxxa2927@mail.ru",
-			//	PhoneNumber = "+375297778899"
-			//},	
+			Id = 1,	
 			Login = "Kaxxa",
 			Password = "12345",
 			Role = Role.Admin

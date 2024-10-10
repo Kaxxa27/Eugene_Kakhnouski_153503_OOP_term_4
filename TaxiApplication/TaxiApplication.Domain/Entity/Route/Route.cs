@@ -2,8 +2,6 @@
 
 public class Route : Entity
 {
-	//public Location StartLocation { get; set; }
-	//public Location EndLocation { get; set; }  
 	public string? Description { get; set; }
 	[Required(ErrorMessage = "Укажите начальную точку.")]
 	public string StartLocation { get; set; }
