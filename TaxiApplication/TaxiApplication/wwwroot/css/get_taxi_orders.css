@@ -1,0 +1,58 @@
+﻿.div-for-table-form {
+    width: auto;
+    margin-top: 40px;
+    border-radius: 20px;
+    padding: 35px;
+    background: linear-gradient(to bottom right, #8E2DE2, #4A00E0);
+}
+
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+
+.container-get {
+    border: 3px solid black;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.container-get tr td:nth-child(2) {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container-get td {
+    font-weight: bold;
+    height: 50px; 
+}
+
+/* Background-color of the odd rows */
+.container-get tr:nth-child(odd) {
+    background: linear-gradient(to bottom right, #acb6e5, #86fde8);
+}
+
+/* Background-color of the even rows */
+.container-get tr:nth-child(even) {
+    background: linear-gradient(to bottom right, #acb6e5, #86fde8);
+}
+
+.container-get th {
+    background: #00FA9A;
+}
+
+.container-get td:first-child {
+    color: black;
+}
+
+.container-get td:hover {
+    /*background-color: crimson;*/
+    background-color: mediumslateblue;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    transition-duration: 0.8s;
+}
+
