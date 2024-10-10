@@ -1,11 +1,11 @@
 ﻿namespace TaxiApplication.WEB.Areas.User.Controllers
 {
     [Area("Admin")]
-    public class ClientController : Controller
+    public class AdminController : Controller
     {
         private readonly IClientService _clientService;
 
-        public ClientController(IClientService clientService)
+        public AdminController(IClientService clientService)
         {
 			_clientService = clientService;
         }
