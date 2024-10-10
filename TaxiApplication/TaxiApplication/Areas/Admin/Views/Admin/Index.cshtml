@@ -24,6 +24,7 @@
                         <th>Age</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Заказы</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,12 @@
                                 <td>@user.Profile.Age</td>
                                 <td>@user.Profile.Email</td>
                                 <td>@user.Profile.PhoneNumber</td>
+                                <td>
+                                    <form asp-controller="Admin" asp-action="GetTaxiOrdersForAdmin" asp-area="Admin" method="get">
+                                        <input type="hidden" name="userId" value="@user.Id" />
+                                        <button class="btn-block standart-btn" type="submit">Заказы</button>
+                                    </form>
+                                </td>
                             </tr>
                         }             
                     }
