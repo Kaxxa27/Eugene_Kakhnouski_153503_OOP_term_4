@@ -28,7 +28,8 @@ public class Program
 		// Services registration. 
 		builder.Services.AddScoped<IClientService, ClientService>();
 		builder.Services.AddScoped<IAccountService, AccountService>();
-		builder.Services.AddScoped<TaxiOrderService>();
+		builder.Services.AddScoped<IMapService, MapService>();
+		builder.Services.AddScoped<ITaxiOrderService, TaxiOrderService>();
 		builder.Services.AddScoped<IBaseResponse<User>, BaseResponse<User>>();
 		
 		// Database configuration.
