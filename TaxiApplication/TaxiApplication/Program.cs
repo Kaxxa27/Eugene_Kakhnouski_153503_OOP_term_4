@@ -41,7 +41,7 @@ public class Program
 
 		// Mapping routes to controllers.
 		app.MapControllerRoute(
-		 name: "User",
+		 name: "area",
 		 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 		 );
 

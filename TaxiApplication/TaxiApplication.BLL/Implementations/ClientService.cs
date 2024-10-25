@@ -9,7 +9,7 @@ namespace TaxiApplication.BLL.Implementations;
 
 public class ClientService : IClientService
 {
-	IUnitOfWork _unitOfWork;
+	private readonly IUnitOfWork _unitOfWork;
 
 	public ClientService(IUnitOfWork unitOfWork)
 	{

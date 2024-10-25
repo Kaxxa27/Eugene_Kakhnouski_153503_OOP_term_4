@@ -1,0 +1,49 @@
+﻿@model TaxiApplication.Domain.Entity.Client
+@{
+	ViewBag.Title = "UpdateClient";
+}
+
+<h1> Update Client</h1>
+
+<form asp-action="UpdateClient" asp-controller="Client">
+	<div>
+		<p>
+			<label asp-for="Login"></label>
+			<input asp-for="Login" value="@Model.Login" />
+		</p>
+		<p>
+			<label asp-for="Profile.Name"></label>
+			<input asp-for="Profile.Name" value="@Model.Profile.Name" />
+		</p>
+		<p>
+			<label asp-for="Profile.Surname"></label>
+			<input asp-for="Profile.Surname" value="@Model.Profile.Surname" />
+
+		</p>
+		<p>
+			<label asp-for="Profile.Age"></label>
+			<input asp-for="Profile.Age" value="@Model.Profile.Age" />
+
+		</p>
+		<p>
+			<label asp-for="Profile.PhoneNumber"></label>
+			<input asp-for="Profile.PhoneNumber" value="@Model.Profile.PhoneNumber" />
+		</p>
+		<p>
+			<label asp-for="Profile.Email"></label>
+			<input asp-for="Profile.Email" value="@Model.Profile.Email" />
+		</p>
+		<p>
+			<label asp-for="Password"></label>
+			<input asp-for="Password" value="@Model.Password" />
+		</p>
+		<p>
+			<input type="submit" value="Update Client" />
+		</p>
+		<input hidden="hidden" name="Role" value="@TaxiApplication.Domain.Enum.Role.Client" />
+		<input hidden="hidden" name="Profile.Id" value="@Model.Profile.Id" />
+		<input hidden="hidden" name="Profile.ClientId" value="@Model.Profile.ClientId"/>
+	</div>
+</form>
+
+<div asp-validation-summary="All"></div>

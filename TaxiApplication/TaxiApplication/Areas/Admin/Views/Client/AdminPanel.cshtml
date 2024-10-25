@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TaxiApplication.Domain.Entity.Client>
+@{
+    ViewBag.Title = "AdminPanel";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Delete</th>
+            <th>Update</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.ToList())
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Login</td>
+                <td>@user.Password</td>
+                <td>@user.Profile.Name</td>
+                <td>@user.Profile.Surname</td>
+                <td>@user.Profile.Age</td>
+                <td>@user.Profile.Email</td>
+                <td>@user.Profile.PhoneNumber</td>
+                <td>
+                    <form asp-controller="Client" asp-action="DeleteClient" asp-route-id="@user.Id">
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </td>
+                <td>
+                    <form asp-controller="Client" method="get" asp-action="UpdateClient" asp-route-id="@user.Id">
+                        <input type="submit" value="Update" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
