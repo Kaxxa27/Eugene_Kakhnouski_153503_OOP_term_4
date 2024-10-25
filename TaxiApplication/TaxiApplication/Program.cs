@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 
 namespace TaxiApplication;
 
@@ -11,6 +12,14 @@ public class Program
 		// MVC support 
 		builder.Services.AddControllersWithViews();
 
+		// Swagger Support
+		builder.Services.AddEndpointsApiExplorer();
+		builder.Services.AddSwaggerGen(c =>
+		{
+			c.SwaggerDoc("v1", new OpenApiInfo { Title = "Taxi Application API", Version = "v1" });
+		});
+
+		
 		// Authentication and authorization.
 		builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 			.AddCookie(options =>
@@ -45,6 +54,17 @@ public class Program
 
 		var app = builder.Build();
 
+		// Swagger
+		if (app.Environment.IsDevelopment())
+		{
+			app.UseSwagger();
+			app.UseSwaggerUI(c => 
+			{
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Taxi Application API V1");
+				c.RoutePrefix = "swagger";
+			});
+		}
+		
 		// Authorization and Authorization.
 		app.UseAuthentication();
 		app.UseAuthorization();
