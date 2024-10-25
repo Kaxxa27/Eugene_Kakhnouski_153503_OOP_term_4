@@ -3,10 +3,15 @@
 public class User : Entity
 {
 	public Role Role { get; set; }
-	public string Login { get; set; } = null!;
-	public string Password { get; set; } = null!;
+
+    [Required(ErrorMessage = "Укажите логин.")]
+    public string Login { get; set; } = null!;
+
+    [Required(ErrorMessage = "Укажите пароль.")]
+    public string Password { get; set; } = null!;
 
 	[NotMapped]
-	[Compare("Password")]
-	public string PasswordConfirm { get; set; } = null!;
+	[Compare("Password", ErrorMessage = "Пароли не совпадают.")]
+    [Required(ErrorMessage = "Повторите пароль.")]
+    public string PasswordConfirm { get; set; } = null!;
 }

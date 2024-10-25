@@ -13,22 +13,50 @@
         <h1 class="login-style-size-50 ">Sign up</h1>
 
         <p>
-            <div class="form-name-surname">
-                <input asp-for="Profile.Name" class="form-control " id="PasswordConfirmInput" placeholder="Password" autocomplete="off">
-                <label class="login-style-for-labels" asp-for="Profile.Name" for="PasswordConfirmInput">Name</label>
+            <div class="form-floating form-name-surname">
+                <input asp-for="Profile.Name" class="form-control " id="NameInput" placeholder="Password" autocomplete="off">
+                <label class="login-style-for-labels" asp-for="Profile.Name" for="NameInput">Name</label>
                 <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
                 <span asp-validation-for="Profile.Name" class="login-style-for-errors"></span>
             </div>
-            <div class="form-name-surname ">
-                <input asp-for="Profile.Surname" class="form-control " id="PasswordConfirmInput" placeholder="Password" autocomplete="off">
-                <label class="login-style-for-labels" asp-for="Profile.Surname" for="PasswordConfirmInput">Surname</label>
+            <div class="form-floating  form-name-surname ">
+                <input asp-for="Profile.Surname" class="form-control " id="SurnameInput" placeholder="Password" autocomplete="off">
+                <label class="login-style-for-labels" asp-for="Profile.Surname" for="SurnameInput">Surname</label>
                 <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
                 <span asp-validation-for="Profile.Surname" class="login-style-for-errors"></span>
             </div>
         </p>
 
         <p>
-            <div class="form-floating mb-3">
+            <div class="form-floating width-for-labels-registration">
+                <input asp-for="Profile.Email" class="form-control " id="EmailInput" placeholder="Password" autocomplete="off">
+                <label class="login-style-for-labels" asp-for="Profile.Email" for="EmailInput">Email</label>
+                <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
+                <span asp-validation-for="Profile.Email" class="login-style-for-errors"></span>
+            </div>
+        </p>
+
+
+        <p>
+            <div class="form-floating width-for-labels-registration">
+                <input asp-for="Profile.PhoneNumber" class="form-control " id="PhoneNumberInput" placeholder="Password" autocomplete="off">
+                <label class="login-style-for-labels" asp-for="Profile.PhoneNumber" for="PhoneNumberInput">PhoneNumber</label>
+                <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
+                <span asp-validation-for="Profile.PhoneNumber" class="login-style-for-errors"></span>
+            </div>
+        </p>
+
+        <p>
+            <div class="form-floating width-for-labels-registration">
+                <input asp-for="Profile.Age" class="form-control " id="AgeInput" placeholder="Age" autocomplete="off">
+                <label class="login-style-for-labels" asp-for="Profile.Age" for="AgeInput">Age</label>
+                <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
+                <span asp-validation-for="Profile.Age" class="login-style-for-errors"></span>
+            </div>
+        </p>
+
+        <p>
+            <div class="form-floating width-for-labels-registration">
                 <input asp-for="Login" class="form-control" id="LoginInput" placeholder="test@gmail.com" autocomplete="off">
                 <label class="login-style-for-labels" asp-for="Login" for="LoginInput">Login</label>
                 <span asp-validation-for="Login" class="login-style-for-errors"></span>
@@ -36,7 +64,7 @@
         </p>
 
         <p>
-            <div class="form-floating ">
+            <div class="form-floating width-for-labels-registration">
                 <input asp-for="Password" type="password" class="form-control " id="PasswordInput" placeholder="Password" autocomplete="off">
                 <label class="login-style-for-labels" asp-for="Password" for="PasswordInput">Password</label>
                 <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
@@ -45,7 +73,7 @@
         </p>
 
         <p>
-            <div class="form-floating ">
+            <div class="form-floating width-for-labels-registration">
                 <input asp-for="PasswordConfirm" type="password" class="form-control " id="PasswordConfirmInput" placeholder="Password" autocomplete="off">
                 <label class="login-style-for-labels" asp-for="PasswordConfirm" for="PasswordConfirmInput">PasswordConfirm</label>
                 <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
@@ -53,85 +81,12 @@
             </div>
         </p>
 
-        <p>
-
-            <div class="form-floating ">
-                <input asp-for="Profile.Email" class="form-control " id="PasswordConfirmInput" placeholder="Password" autocomplete="off">
-                <label class="login-style-for-labels" asp-for="Profile.Email" for="PasswordConfirmInput">Email</label>
-                <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
-                <span asp-validation-for="Profile.Email" class="login-style-for-errors"></span>
-            </div>
-        </p>
-
-        <p>
-            <div class="form-floating ">
-                <input asp-for="Profile.Age" class="form-control " id="PasswordConfirmInput" placeholder="Password" autocomplete="off">
-                <label class="login-style-for-labels" asp-for="Profile.Age" for="PasswordConfirmInput">Age</label>
-                <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
-                <span asp-validation-for="Profile.Age" class="login-style-for-errors"></span>
-            </div>
-
-        </p>
-
-        <p>
-            <div class="form-floating ">
-                <input asp-for="Profile.PhoneNumber" class="form-control " id="PasswordConfirmInput" placeholder="Password" autocomplete="off">
-                <label class="login-style-for-labels" asp-for="Profile.PhoneNumber" for="PasswordConfirmInput">PhoneNumber</label>
-                <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
-                <span asp-validation-for="Profile.PhoneNumber" class="login-style-for-errors"></span>
-            </div>
-
-        </p>
-
         <input type="hidden" name="Role" value="@TaxiApplication.Domain.Enum.Role.Client">
 
         <p>
             <div>
-                <button class="btn-block sign-in-btn" type="submit" value="Sign up">Sign up</button>
-                @* <button class="btn-block sign-up-btn" type="button" onclick="location.href='@Url.Action("Registration", "Account")'">Sign up</button>*@
+                <button class="btn-block sign-up-btn-registration" type="submit" value="Sign up">Sign up</button>
             </div>
         </p>
     </div>
 </form>
-   @* <div>
-        <p>
-            <label asp-for="Login"></label>
-            <input asp-for="Login" />
-        </p>
-        <p>
-            <label asp-for="Password"></label>
-            <input asp-for="Password" />
-        </p>
-        <p>
-            <label asp-for="PasswordConfirm"></label>
-            <input asp-for="PasswordConfirm" />
-        </p>
-        <input type="hidden" name="Role" value="@TaxiApplication.Domain.Enum.Role.Client">
-        <p>
-            <label asp-for="Profile.Name"></label>
-            <input asp-for="Profile.Name" />
-        </p>
-        <p>
-            <label asp-for="Profile.Surname"></label>
-            <input asp-for="Profile.Surname" />
-        </p>
-        <p>
-            <label asp-for="Profile.Email"></label>
-            <input asp-for="Profile.Email" />
-        </p>
-        <p>
-            <label asp-for="ProNumber"></label>
-            <input asp-for="Profile.Phofile.Age"></label>
-            <input asp-for="Profile.Age" />
-        </p>
-        <p>
-            <label asp-for="Profile.PhoneneNumber" />
-        </p>
-
-        <p>
-            <input type="submit" value="Registration" />
-            <button type="button" onclick="location.href='@Url.Action("Login", "Account")'">Login</button>
-        </p>
-    </div>*@
-
-@*<div asp-validation-summary="All"></div>*@
