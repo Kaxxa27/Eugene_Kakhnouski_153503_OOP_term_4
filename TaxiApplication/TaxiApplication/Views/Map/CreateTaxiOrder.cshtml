@@ -1,4 +1,5 @@
-﻿@model TaxiApplication.Domain.Entity.TaxiOrder
+﻿@*@model TaxiApplication.Domain.Entity.TaxiOrder*@
+@model TaxiApplication.BLL.ViewModels.TaxiOrderViewModel
 @{
 	ViewBag.Title = "CreatingTaxiOrder";
 }
@@ -10,75 +11,72 @@
 	<meta charset="utf-8" />
 </head>
 <body>
-	@*@await Html.PartialAsync("BuildRoute")*@
 	<form asp-controller="Map" asp-action="CreateTaxiOrder" method="post" asp-area="">
 		<p>
-			<p>
-				<label asp-for="CurrentRoute.Description"></label>
-				<input asp-for="CurrentRoute.Description" />
-			</p>
-			<p>
-				<label asp-for="CurrentRoute.StartLocation"></label>
-				<input asp-for="CurrentRoute.StartLocation" data-val-required="Введите начальную точку маршрута." />
-				<span asp-validation-for="CurrentRoute.StartLocation"/>
-
-			</p>
-			<p>
-				<label asp-for="CurrentRoute.EndLocation"></label>
-				<input asp-for="CurrentRoute.EndLocation" data-val-required="Введите конечную точку маршрута." />
-				<span asp-validation-for="CurrentRoute.EndLocation" />
-			</p>
-			@if (Model is not null)
-			{
-				<input hidden="hidden" name="CurrentRoute.TaxiOrderId" value="@Model.Id" />
-			}
-			<fieldset>
-				<legend>Ваши предпочтения:</legend>
-
-				<table>
-					<tr>
-						<td>
-							<div>
-								<input type="checkbox" asp-for="IsPetFriendly" checked>
-								<label asp-for="IsPetFriendly"></label>
-							</div>
-						</td>
-						<td>
-							<div>
-								<input type="checkbox" asp-for="IsMusicPreferenceNeeded">
-								<label asp-for="IsMusicPreferenceNeeded"></label>
-							</div>
-						</td>
-						<td>
-							<div>
-								<input type="checkbox" asp-for="IsChildSeatNeeded">
-								<label asp-for="IsChildSeatNeeded"></label>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div>
-								<input type="checkbox" asp-for="IsAirConditioningNeeded">
-								<label asp-for="IsAirConditioningNeeded"></label>
-							</div>
-						</td>
-						<td>
-							<div>
-								<input type="checkbox" asp-for="IsBaggageAssistanceNeeded">
-								<label asp-for="IsBaggageAssistanceNeeded"></label>
-							</div>
-						</td>
-						<td>
-							<div>
-								<input type="checkbox" asp-for="IsMeetAndGreetNeeded">
-								<label asp-for="IsMeetAndGreetNeeded"></label>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</fieldset>
+			<label asp-for="Route.Description"></label>
+			<input asp-for="Route.Description" />
 		</p>
+		<p>
+			<label asp-for="Route.StartLocation"></label>
+			<input asp-for="Route.StartLocation" data-val-required="Введите начальную точку маршрута." />
+			<span asp-validation-for="Route.StartLocation" />
+
+		</p>
+		<p>
+			<label asp-for="Route.EndLocation"></label>
+			<input asp-for="Route.EndLocation" data-val-required="Введите конечную точку маршрута." />
+			<span asp-validation-for="Route.EndLocation" />
+		</p>
+		@if (Model is not null)
+		{
+			<input hidden="hidden" name="Route.TaxiOrderId" value="@Model.Id" />
+		}
+		<fieldset>
+			<legend>Ваши предпочтения:</legend>
+
+			<table>
+				<tr>
+					<td>
+						<div>
+						<input type="checkbox" asp-for="Order.IsPetFriendly" checked>
+						<label asp-for="Order.IsPetFriendly"></label>
+						</div>
+					</td>
+					<td>
+						<div>
+						<input type="checkbox" asp-for="Order.IsMusicPreferenceNeeded">
+						<label asp-for="Order.IsMusicPreferenceNeeded"></label>
+						</div>
+					</td>
+					<td>
+						<div>
+						<input type="checkbox" asp-for="Order.IsChildSeatNeeded">
+						<label asp-for="Order.IsChildSeatNeeded"></label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div>
+						<input type="checkbox" asp-for="Order.IsAirConditioningNeeded">
+						<label asp-for="Order.IsAirConditioningNeeded"></label>
+						</div>
+					</td>
+					<td>
+						<div>
+							<input type="checkbox" asp-for="Order.IsBaggageAssistanceNeeded">
+						<label asp-for="Order.IsBaggageAssistanceNeeded"></label>
+						</div>
+					</td>
+					<td>
+						<div>
+						<input type="checkbox" asp-for="Order.IsMeetAndGreetNeeded">
+						<label asp-for="Order.IsMeetAndGreetNeeded"></label>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
 		<p>
 			<input type="submit" value="CreateTaxiOrder" />
 		</p>
