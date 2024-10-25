@@ -297,16 +297,17 @@
 			<p><label>Предпочитаемый пол водителя: @Model.Order.DriverGenderPreference</label></p>
 			<p><label>Кол-во пассажиров: @Model.Order.NumberOfPassengers</label></p>
 			<p><label>Дистанция маршрута: @Model.Route.Distance km</label></p>
-			<p><label>Время на поездку: @Model.Route.Time</label></p>
+			<p><label>Время на поездку: @Model.Route.Time</label></p>		
 			<p>
-			<form asp-controller="Map" asp-action="SaveTaxiOrder" asp-area="Map" method="post">
-				<input hidden name="taxiOrderViewModel" value="@JsonSerializer.Serialize(Model)" />
-				<input type="submit" value="Подтвердить" />
-			</form>
-
-			<form asp-controller="Map" asp-action="CreateTaxiOrder" asp-area="Map" method="get">
-				<button type="submit">Отменить</button>
-			</form>
+				<form asp-controller="Map" asp-action="SaveTaxiOrder" asp-area="Map" method="post">
+					<input hidden name="taxiOrderViewModel" value="@JsonSerializer.Serialize(Model)" />
+					<input type="submit" value="Подтвердить" />
+				</form>
+			</p>
+			<p>
+				<form asp-controller="Map" asp-action="CreateTaxiOrder" asp-area="Map" method="get">
+					<button type="submit">Отменить</button>
+				</form>
 			</p>
 		</div>	
 	}
@@ -317,40 +318,76 @@
 			<tr>
 				<td>
 					<div>
-						<input type="checkbox" asp-for="Order.IsPetFriendly" value="Order.IsPetFriendly">
+						<input type="checkbox" readonly asp-for="Order.IsPetFriendly" checked>
 						<label asp-for="Order.IsPetFriendly"></label>
 					</div>
 				</td>
 				<td>
 					<div>
-						<input type="checkbox" asp-for="Order.IsMusicPreferenceNeeded" value="Order.IsMusicPreferenceNeeded">
+						<input type="checkbox" readonly asp-for="Order.IsMusicPreferenceNeeded">
 						<label asp-for="Order.IsMusicPreferenceNeeded"></label>
 					</div>
 				</td>
 				<td>
 					<div>
-						<input type="checkbox" asp-for="Order.IsChildSeatNeeded" value="Order.IsChildSeatNeeded">
+						<input type="checkbox" readonly asp-for="Order.IsChildSeatNeeded">
 						<label asp-for="Order.IsChildSeatNeeded"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" readonly asp-for="Order.IsRoundTrip">
+						<label asp-for="Order.IsRoundTrip"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" readonly asp-for="Order.IsSmokingAllowed">
+						<label asp-for="Order.IsSmokingAllowed"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" readonly asp-for="Order.IsQuietRideNeeded">
+						<label asp-for="Order.IsQuietRideNeeded"></label>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<div>
-						<input type="checkbox" asp-for="Order.IsAirConditioningNeeded" value="Order.IsAirConditioningNeeded">
+						<input type="checkbox" readonly asp-for="Order.IsAirConditioningNeeded">
 						<label asp-for="Order.IsAirConditioningNeeded"></label>
 					</div>
 				</td>
 				<td>
 					<div>
-						<input type="checkbox" asp-for="Order.IsBaggageAssistanceNeeded" value="Order.IsBaggageAssistanceNeeded">
+						<input type="checkbox" readonly asp-for="Order.IsBaggageAssistanceNeeded">
 						<label asp-for="Order.IsBaggageAssistanceNeeded"></label>
 					</div>
 				</td>
 				<td>
 					<div>
-						<input type="checkbox" asp-for="Order.IsMeetAndGreetNeeded" value="Order.IsMeetAndGreetNeeded">
+						<input type="checkbox" readonly asp-for="Order.IsMeetAndGreetNeeded">
 						<label asp-for="Order.IsMeetAndGreetNeeded"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" readonly asp-for="Order.IsTollRoadsPreferred">
+						<label asp-for="Order.IsTollRoadsPreferred"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" readonly asp-for="Order.IsWheelchairAccessible">
+						<label asp-for="Order.IsWheelchairAccessible"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" readonly asp-for="Order.IsDriverProficientInEnglish">
+						<label asp-for="Order.IsDriverProficientInEnglish"></label>
 					</div>
 				</td>
 			</tr>

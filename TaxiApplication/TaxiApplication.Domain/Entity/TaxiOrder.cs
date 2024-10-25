@@ -17,7 +17,7 @@ public class TaxiOrder : Entity
 	public bool IsRoundTrip { get; set; }
 	public bool IsChildSeatNeeded { get; set; }
 	public bool IsMeetAndGreetNeeded { get; set; }
-	public bool IsFlightTrackingNeeded { get; set; }
+	public bool IsDriverProficientInEnglish { get; set; }
 	public bool IsBaggageAssistanceNeeded { get; set; }
 	public bool IsSmokingAllowed { get; set; }
 	public bool IsQuietRideNeeded { get; set; }
