@@ -1,4 +1,6 @@
-﻿namespace TaxiApplication.WEB.Areas.Map.Controllers;
+﻿
+
+namespace TaxiApplication.WEB.Areas.Map.Controllers;
 
 [Area("Client")]
 public class ClientController : Controller
@@ -13,10 +15,21 @@ public class ClientController : Controller
 		_clientService = clientService;
 	}
 
+	private bool CheckUserStatus()
+	{
+		int ID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+		var All_Clients = (_clientService.GetAllClients()).Result.Data;
+		var client = All_Clients!.FirstOrDefault(c => c.Id == ID);
+
+		return client is null ? true : false;
+	}
+
 
 	[HttpGet]
 	public async Task<IActionResult> ProfileEdit()
 	{
+		if (CheckUserStatus() is true) return RedirectToAction("Logout", "Account", new { area = "" });
 		var client = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data;
 		return View(client);
 	}
@@ -24,6 +37,8 @@ public class ClientController : Controller
 	[HttpPost]
 	public async Task<IActionResult> ProfileEdit(Client client)
 	{
+		if (CheckUserStatus() is true) return RedirectToAction("Logout", "Account", new { area = "" });
+
 		client.Profile.Photo = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data!.Profile.Photo;
 		var response = await _clientService.UpdateClient(client);
 
@@ -37,6 +52,7 @@ public class ClientController : Controller
 	[HttpPost]
 	public async Task<IActionResult> UploadPhoto(IFormFile photoFile)
 	{
+		if (CheckUserStatus() is true) return RedirectToAction("Logout", "Account", new { area = "" });
 		try
 		{
 			if (photoFile != null && photoFile.Length > 0)
@@ -65,6 +81,7 @@ public class ClientController : Controller
 	[HttpPost]
 	public async Task<IActionResult> DeleteProfile(Client client)
 	{
+		if (CheckUserStatus() is true) return RedirectToAction("Logout", "Account", new { area = "" });
 		try
 		{
 			await _clientService.DeleteClient(client.Id);
@@ -75,15 +92,21 @@ public class ClientController : Controller
 			await Console.Out.WriteLineAsync($"[ClientController.DeleteProfile] error: {ex.Message})");
 			return RedirectToAction("Logout", "Account", new { area = "" });
 		}
-    }
+	}
 
 
-    [HttpGet]
-	public IActionResult CreateTaxiOrder() => View();
+	[HttpGet]
+	public IActionResult CreateTaxiOrder()
+	{
+		if (CheckUserStatus() is true) return RedirectToAction("Logout", "Account", new { area = "" });
+		return View();
+	}
+
 
 	[HttpPost]
 	public async Task<IActionResult> CreateTaxiOrder(TaxiOrderViewModel taxiOrderViewModel)
 	{
+		if (CheckUserStatus() is true) return RedirectToAction("Logout", "Account", new { area = "" });
 		try
 		{
 			var request = (await _mapService.CreateRouteRequest(taxiOrderViewModel)).Data;
@@ -113,12 +136,14 @@ public class ClientController : Controller
 	[HttpGet]
 	public IActionResult GetTaxiOrders()
 	{
+		if (CheckUserStatus() is true) return RedirectToAction("Logout", "Account", new { area = "" });
 		return View(_taxiOrderService.GetAllClientTaxiOrders(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)).Result.Data);
 	}
 
 	[HttpPost]
 	public async Task<IActionResult> SaveTaxiOrder(string taxiOrderViewModel)
 	{
+		if (CheckUserStatus() is true) return RedirectToAction("Logout", "Account", new { area = "" });
 		try
 		{
 			// Десериализация

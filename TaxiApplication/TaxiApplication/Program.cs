@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace TaxiApplication;
 
 public class Program
