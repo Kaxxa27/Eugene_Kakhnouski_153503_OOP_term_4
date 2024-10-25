@@ -2,8 +2,12 @@
 
 public enum Tariff
 {
-    Economy,
-    Comfort,
-    Business,
-    VIP
+	[Display(Name = "Эконом")]
+	Economy,
+	[Display(Name = "Комфорт")]
+	Comfort,
+	[Display(Name = "Бизнес")]
+	Business,
+	[Display(Name = "VIP")]
+	VIP
 }

@@ -2,7 +2,9 @@
 
 public enum PaymentMethod
 {
+	[Display(Name = "Наличные")]
 	Cash,
+	[Display(Name = "Карта")]
 	CreditCard,
 	PayPal,
 	ApplePay,

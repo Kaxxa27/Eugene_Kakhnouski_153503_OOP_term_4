@@ -5,8 +5,8 @@ public class TaxiOrder : Entity
 	public Route.Route? CurrentRoute { get; set; }
 	public Tariff Tariff { get; set; }
     public double Price { get; set; }
-    [Required]
-	[Range(1, 5)]
+    [Required(ErrorMessage = "Введите кол-во пассажиров.")]
+	[Range(1, 5, ErrorMessage = "Кол-во пассажиров должно быть 1-4.")]
 	public int NumberOfPassengers { get; set; }
 	public DriverGender DriverGenderPreference { get; set; }
 	public PaymentMethod PaymentMethod { get; set; }

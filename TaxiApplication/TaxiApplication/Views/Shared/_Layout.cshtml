@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/registration.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/_layout.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/create_order.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/TaxiApplication.WEB.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -61,49 +62,6 @@
 		</nav>
 	</div>
 
-@*	<div>
-		<p>
-			@if (User.Identity.IsAuthenticated is not true)
-			{
-				
-			}
-			else
-			{
-				<div>
-					<a asp-controller="Home" asp-action="Index" asp-area="">Главная</a>
-				</div>
-				<a asp-controller="Account" asp-action="Logout" asp-route-area="">Выйти</a>
-				<div>
-					<p>
-						Логин: @User.FindFirst(ClaimsIdentity.DefaultNameClaimType)?.Value.
-						Роль: @User.FindFirst(ClaimsIdentity.DefaultRoleClaimType)?.Value
-					</p>
-				</div>
-			}
-
-			@if (User.IsInRole(TaxiApplication.Domain.Enum.Role.Admin.ToString()))
-			{
-				<div>
-					<label><h1><b>Admin:</b></h1></label>
-					<a asp-controller="Client" asp-action="Index" asp-area="Admin">GetAllUsersLink</a>
-					<a asp-controller="Client" asp-action="AddClient" asp-area="Admin">AddClient</a>
-					<a asp-controller="Client" asp-action="AdminPanel" asp-area="Admin">AdminPanel</a>
-					<a asp-controller="Map" asp-action="Index" asp-area="">Get_Map</a>
-				</div>
-			}
-			else if (User.IsInRole(TaxiApplication.Domain.Enum.Role.Client.ToString()))
-			{
-				<div>
-					<label><h1><b>Client:</b></h1></label>
-					<a asp-controller="Client" asp-action="Index" asp-area="Admin">GetAllUsersLink</a>
-					<a asp-controller="Map" asp-action="CreateTaxiOrder" asp-area="Map">CreateTaxiOrder</a>
-					<a asp-controller="Map" asp-action="GetTaxiOrders" asp-area="Map">GetTaxiOrders</a>
-				</div>
-			}
-
-		</p>
-	</div>*@
-
 	<div class="container">
 		<main role="main" class="pb-3">
 			@RenderBody()
@@ -111,77 +69,24 @@
 	</div>
 
 
+@*	<footer class="footer text-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<p class="text-center">© 2023 Taxi Co. All rights reserved.</p>
+				</div>
+				<div class="col-md-6 text-md-end">
+					<p class="text-center">© 2023 Taxi Co. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>*@
+
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 
-	@*Стиль для всех таблиц class="table"*@
-	@*<style>
-	.table {
-	width: 100%;
-	border: none;
-	margin-bottom: 20px;
-	border-collapse: separate;
-	}
-
-	.table thead th {
-	font-weight: bold;
-	text-align: left;
-	border: none;
-	padding: 10px 15px;
-	background: #EDEDED;
-	font-size: 14px;
-	border-top: 1px solid #ddd;
-	}
-
-	.table td {
-	word-wrap: break-word;
-	}
-
-	.table tr th:first-child,
-	.table tr td:first-child {
-	border-left: 1px solid #ddd;
-	}
-
-	.table tr th:last-child,
-	.table tr td:last-child {
-	border-right: 1px solid #ddd;
-	}
-
-	.table thead tr th:first-child {
-	border-radius: 20px 0 0 0;
-	}
-
-	.table thead tr th:last-child {
-	border-radius: 0 20px 0 0;
-	}
-
-	.table tbody td {
-	text-align: left;
-	border: none;
-	padding: 10px 15px;
-	font-size: 14px;
-	vertical-align: top;
-	}
-
-	.table tbody tr:nth-child(even) {
-	background: #F8F8F8;
-	}
-
-	.table tbody tr:last-child td {
-	border-bottom: 1px solid #ddd;
-	}
-
-	.table tbody tr:last-child td:first-child {
-	border-radius: 0 0 0 20px;
-	}
-
-	.table tbody tr:last-child td:last-child {
-	border-radius: 0px;
-	border-bottom-right-radius: 20px;
-	}
-	</style>*@
 </body>
 
 </html>
