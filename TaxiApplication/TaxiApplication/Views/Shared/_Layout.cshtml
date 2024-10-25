@@ -44,9 +44,13 @@
 						<div class="navbar-nav ms-auto">
 							@if (User.IsInRole(TaxiApplication.Domain.Enum.Role.Admin.ToString()))
 							{
-								<a class="nav-link active" aria-current="page" asp-controller="Client" asp-action="Index" asp-area="Admin">Список клиентов</a>
+								<a class="nav-link active" aria-current="page" asp-controller="Admin" asp-action="Index" asp-area="Admin">Список клиентов</a>
+								<a class="nav-link active" aria-current="page" asp-controller="Admin" asp-action="AdminPanel" asp-area="Admin">Админ панель</a>
+								<a class="nav-link active" aria-current="page" asp-controller="Admin" asp-action="AddClient" asp-area="Admin">AddClient</a>
+
+								@*<a class="nav-link active" aria-current="page" asp-controller="Client" asp-action="Index" asp-area="Admin">Список клиентов</a>
 								<a class="nav-link active" aria-current="page" asp-controller="Client" asp-action="AdminPanel" asp-area="Admin">Админ панель</a>
-								<a class="nav-link active" aria-current="page" asp-controller="Client" asp-action="AddClient" asp-area="Admin">AddClient</a>
+								<a class="nav-link active" aria-current="page" asp-controller="Client" asp-action="AddClient" asp-area="Admin">AddClient</a>*@
 							}
 							else if (User.IsInRole(TaxiApplication.Domain.Enum.Role.Client.ToString()))
 							{
