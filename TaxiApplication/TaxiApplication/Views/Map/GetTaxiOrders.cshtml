@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TaxiApplication.Domain.Entity.TaxiOrder>
+@{
+    ViewBag.Title = "GetAllOrders";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Distance</th>
+                    <th>Time</th>
+                    <th>Payment</th>
+                    <th>NumOfPassanger</th>
+                    <th>DriverGender</th>
+
+                    <th>AirConditionin</th>
+                    <th>BaggageAssistance</th>
+                    <th>ChildSeat</th>
+                    <th>MusicPreference</th>
+                    <th>MeetAndGreet</th>
+                    <th>PetFriendly</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var taxiOrder in Model.ToList())
+                {
+                    <tr>
+                        <td>@taxiOrder.Id</td>
+                        <td>@taxiOrder.CurrentRoute.Description</td>
+                        <td>@taxiOrder.CurrentRoute.StartLocation</td>
+                        <td>@taxiOrder.CurrentRoute.EndLocation</td>
+                        <td>@taxiOrder.CurrentRoute.Distance</td>
+                        <td>@taxiOrder.CurrentRoute.Time</td>
+                        <td>@taxiOrder.PaymentMethod</td>
+                        <td>@taxiOrder.NumberOfPassengers</td>
+                        <td>@taxiOrder.DriverGenderPreference</td>
+
+                        <td>@taxiOrder.IsAirConditioningNeeded</td>
+                        <td>@taxiOrder.IsBaggageAssistanceNeeded</td>
+                        <td>@taxiOrder.IsChildSeatNeeded</td>
+                        <td>@taxiOrder.IsMusicPreferenceNeeded</td>
+                        <td>@taxiOrder.IsMeetAndGreetNeeded</td>
+                        <td>@taxiOrder.IsPetFriendly</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
