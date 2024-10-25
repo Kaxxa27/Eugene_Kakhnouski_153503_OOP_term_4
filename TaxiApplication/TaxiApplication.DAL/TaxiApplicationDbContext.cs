@@ -27,8 +27,8 @@ public class TaxiApplicationDbContext : DbContext
 		User Admin = new User
 		{
 			Id = 1,
-			Name = "Jeka",
-			Surname = "Kaxxa",
+			Name = "Евгений",
+			Surname = "Кахновский",
 			Email = "Kaxxa2927@mail.ru",
 			Password = "12345",
 			PhoneNumber = "+375297778899",

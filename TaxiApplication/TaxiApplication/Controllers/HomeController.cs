@@ -22,7 +22,7 @@ namespace TaxiApplication.Controllers
         public IActionResult AddItem(User user)
         {
             _repository.UserRepository.AddAsync(user);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
     }
 }
