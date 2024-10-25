@@ -46,7 +46,8 @@
 				<div>
 					<label><h1><b>Client:</b></h1></label>
 					<a asp-controller="Client" asp-action="Index" asp-area="Admin">GetAllUsersLink</a>
-					<a asp-controller="Map" asp-action="Index" asp-area="">CreateTaxiOrder</a>
+					@*<a asp-controller="Map" asp-action="Index" asp-area="">CreateTaxiOrder</a>*@
+					<a asp-controller="Map" asp-action="CreateTaxiOrder" asp-area="">CreateTaxiOrder</a>
 					<a asp-controller="Map" asp-action="GetTaxiOrders" asp-area="">GetTaxiOrders</a>
 				</div>
 			}
@@ -78,6 +79,10 @@
 			background: #EDEDED;
 			font-size: 14px;
 			border-top: 1px solid #ddd;
+		}
+
+		.table td {
+			word-wrap: break-word;
 		}
 
 		.table tr th:first-child,
