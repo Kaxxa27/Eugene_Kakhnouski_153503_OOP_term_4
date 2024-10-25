@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using TaxiApplication.BLL.Implementations;
 using TaxiApplication.BLL.Interfaces;
@@ -19,6 +20,15 @@ public class Program
 		// MVC support 
 		builder.Services.AddControllersWithViews();
 
+		// Authentication and authorization.
+		builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+			.AddCookie(options =>
+			{
+				options.LoginPath = new PathString("/Account/Login");
+				options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+			});
+		builder.Services.AddAuthorization();
+
 		// Repositories registration.
 		builder.Services.AddScoped<IRepository<User>, EfRepository<User>>();
 		builder.Services.AddScoped<IRepository<Client>, EfRepository<Client>>();
@@ -26,6 +36,7 @@ public class Program
 
 		// Services registration. 
 		builder.Services.AddScoped<IClientService, ClientService>();
+		builder.Services.AddScoped<IAccountService, AccountService>();
 		builder.Services.AddScoped<IBaseResponse<User>, BaseResponse<User>>();
 		
 		// Database configuration.
@@ -38,6 +49,11 @@ public class Program
         });
 
 		var app = builder.Build();
+
+		// Authorization and Authorization.
+		app.UseAuthentication();
+		app.UseAuthorization();
+
 
 		// Mapping routes to controllers.
 		app.MapControllerRoute(
