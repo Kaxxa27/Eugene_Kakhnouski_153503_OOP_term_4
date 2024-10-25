@@ -1,4 +1,5 @@
-﻿@model TaxiApplication.WEB.Controllers.LocationLists
+﻿@*@model TaxiApplication.WEB.Controllers.LocationLists*@
+@model TaxiApplication.WEB.Controllers.Locations
 @{
 	ViewBag.Title = "Map";
 }
@@ -21,16 +22,16 @@
 
 			return map;
 		}
-
+		
 		// Построение маршрута по двум заданным точкам с помощью модуля Directions
-		function GetRoute(start, end) {
-			
+		function GetRoute(start, end) { 
+
 			ClearMap();
 			if (directionsManager) {
 				// Set Route Mode to driving
 
 				directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
-	
+		
 				//var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: 'Start', location: new Microsoft.Maps.Location(/*53.897378, 27.438627*/53.890219, 27.427219) });
 				//var endWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: 'End', location: new Microsoft.Maps.Location(/*53.937364, 27.604317*/53.903243, 27.4265) });
 				var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: start });
@@ -139,7 +140,6 @@
 				});
 			}
 		}
-
 		function pushpinMouseOut(e) {
 			if (e.target.metadata) {
 				infobox.setOptions({
@@ -220,28 +220,20 @@
 		// дальше работать с этой картой не представлялось возможности (чтобы добавить метку уже на существующую карту),
 		// а создание новой карты лишь создавало второй объект.
 		function GlobalStart() {
-		@if (Model.LocationList != null)
-		{
-			<text>
-				var locations = @Html.Raw(Json.Serialize(Model.LocationList));
+			//Карта создается всегда, чтобы она была видна пользователю
+			if(map == null)
 				var map = CreateMap();
-				//GetRoute();
-				AddMarkers(map, locations);
-			</text>
-		}
-		else
-		{
-			<text>
-					var locations = [
-					{ latitude: 47.6062, longitude: -122.3321, title: 'Seattle' },
-					{ latitude: 40.7128, longitude: -74.0060, title: 'New York' },
-					{ latitude: 51.5074, longitude: -0.1278, title: 'London' }
-				];
-				var map = CreateMap();
-				AddMarkers(map, locations);
-			</text>
-		}
-				}
+			@if (Model.Start != null && Model.End != null)
+				{
+					<text>
+						var start = @Html.Raw(Json.Serialize(Model.Start));
+						var end = @Html.Raw(Json.Serialize(Model.End));
+						GetRoute(start, end);
+						//var location = @Html.Raw(Json.Serialize(Model));
+						//AddMarkers(map, locations);
+				</text>
+			}
+		}			
 	</script>
 
 	<!-- Reference to the Bing Maps SDK -->
@@ -257,9 +249,10 @@
 
 </head>
 <body>
-	<input type="text" id="start" />
-	<input type="text" id="end" />
-	<button onclick="GetRoute(document.getElementById('start').value, document.getElementById('end').value)">Рассчитать маршрут</button>
+	@* Встраивание частичного представления, для ввода данных о маршруте*@
+	@await Html.PartialAsync("BuildRoute")
 	<div id="myMap" style="position:relative;width:1800px;height:600px;"></div>
 </body>
 </html>
+
+

@@ -1,0 +1,28 @@
+﻿@model TaxiApplication.WEB.Controllers.Locations
+@{
+	ViewBag.Title = "Map";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<form asp-controller="Map" asp-action="BuildRoute" method="post" asp-area="">
+		<p>
+			<label asp-for="Start"></label>
+			<input asp-for="Start" />
+		</p>
+		<p>
+			<label asp-for="End"></label>
+			<input asp-for="End" />
+		</p>
+		<p>
+			<input type="submit" value="BuildRoute" />
+		</p>
+	</form>
+	<div asp-validation-summary="All"></div>
+</body>
+</html>
