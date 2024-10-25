@@ -1,10 +1,4 @@
-﻿
-using System.Security.Claims;
-using TaxiApplication.BLL.ViewModels;
-using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Responce;
-
-namespace TaxiApplication.BLL.Interfaces;
+﻿namespace TaxiApplication.BLL.Interfaces;
 
 public interface IAccountService
 {

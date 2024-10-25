@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Entity.Profile;
-
-namespace TaxiApplication.DAL.Interfaces;
+﻿namespace TaxiApplication.DAL.Interfaces;
 public interface IUnitOfWork
 {
 	IRepository<User> UserRepository { get; }

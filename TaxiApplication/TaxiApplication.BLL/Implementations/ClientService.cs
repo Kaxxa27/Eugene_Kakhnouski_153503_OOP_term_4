@@ -1,11 +1,4 @@
-﻿using TaxiApplication.BLL.Interfaces;
-using TaxiApplication.DAL.Interfaces;
-using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Enum;
-using TaxiApplication.Domain.Responce;
-using TaxiApplication.Domain.Responce.Interfaces;
-
-namespace TaxiApplication.BLL.Implementations;
+﻿namespace TaxiApplication.BLL.Implementations;
 
 public class ClientService : IClientService
 {

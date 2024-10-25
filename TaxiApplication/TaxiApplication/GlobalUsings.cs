@@ -1,0 +1,13 @@
+﻿global using Microsoft.AspNetCore.Mvc;
+global using TaxiApplication.BLL.Interfaces;
+global using TaxiApplication.Domain.Entity;
+global using TaxiApplication.Domain.Responce;
+global using Microsoft.AspNetCore.Authentication;
+global using TaxiApplication.BLL.ViewModels;
+global using TaxiApplication.DAL.Interfaces;
+global using Microsoft.AspNetCore.Authentication.Cookies;
+global using Microsoft.EntityFrameworkCore;
+global using TaxiApplication.BLL.Implementations;
+global using TaxiApplication.DAL;
+global using TaxiApplication.DAL.Repositories;
+global using TaxiApplication.Domain.Responce.Interfaces;

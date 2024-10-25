@@ -1,7 +1,4 @@
-﻿
-using TaxiApplication.Domain.Enum;
-
-namespace TaxiApplication.Domain.Responce.Interfaces;
+﻿namespace TaxiApplication.Domain.Responce.Interfaces;
 
 public interface IBaseResponse<T>
 {

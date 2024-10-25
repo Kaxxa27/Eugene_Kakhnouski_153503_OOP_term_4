@@ -1,14 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore;
-using TaxiApplication.BLL.Implementations;
-using TaxiApplication.BLL.Interfaces;
-using TaxiApplication.DAL;
-using TaxiApplication.DAL.Interfaces;
-using TaxiApplication.DAL.Repositories;
-using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Responce;
-using TaxiApplication.Domain.Responce.Interfaces;
-
 namespace TaxiApplication;
 
 public class Program

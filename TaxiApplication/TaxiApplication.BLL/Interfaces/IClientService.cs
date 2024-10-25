@@ -1,7 +1,4 @@
-﻿using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Responce.Interfaces;
-
-namespace TaxiApplication.BLL.Interfaces;
+﻿namespace TaxiApplication.BLL.Interfaces;
 
 public interface IClientService
 {

@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices;
-using TaxiApplication.BLL.Interfaces;
-using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Responce;
-
-namespace TaxiApplication.WEB.Areas.User.Controllers
+﻿namespace TaxiApplication.WEB.Areas.User.Controllers
 {
     [Area("Admin")]
     public class ClientController : Controller

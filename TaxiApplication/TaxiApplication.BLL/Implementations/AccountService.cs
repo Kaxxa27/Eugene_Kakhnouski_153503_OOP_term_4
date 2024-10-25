@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using TaxiApplication.BLL.Interfaces;
-using TaxiApplication.BLL.ViewModels;
-using TaxiApplication.DAL.Interfaces;
-using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Enum;
-using TaxiApplication.Domain.Responce;
-
-namespace TaxiApplication.BLL.Implementations;
+﻿namespace TaxiApplication.BLL.Implementations;
 
 public class AccountService : IAccountService
 {

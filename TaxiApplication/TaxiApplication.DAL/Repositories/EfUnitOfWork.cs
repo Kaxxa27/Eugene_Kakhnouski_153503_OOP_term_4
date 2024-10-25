@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaxiApplication.DAL.Interfaces;
-using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Entity.Profile;
-
-namespace TaxiApplication.DAL.Repositories;
+﻿namespace TaxiApplication.DAL.Repositories;
 
 public class EfUnitOfWork : IUnitOfWork
 {

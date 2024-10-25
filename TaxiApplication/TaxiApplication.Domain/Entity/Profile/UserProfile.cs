@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
-
-namespace TaxiApplication.Domain.Entity.Profile;
+﻿namespace TaxiApplication.Domain.Entity.Profile;
 
 public class UserProfile : Entity
 {

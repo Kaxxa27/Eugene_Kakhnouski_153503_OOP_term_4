@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using TaxiApplication.BLL.Interfaces;
-using TaxiApplication.BLL.ViewModels;
-using TaxiApplication.Domain.Entity;
-
-namespace TaxiApplication.WEB.Controllers;
+﻿namespace TaxiApplication.WEB.Controllers;
 
 public class AccountController : Controller
 {

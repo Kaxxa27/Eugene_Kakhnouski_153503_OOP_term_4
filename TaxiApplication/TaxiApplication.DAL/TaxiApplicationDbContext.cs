@@ -1,15 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
-using TaxiApplication.Domain.Entity;
-using TaxiApplication.Domain.Entity.Profile;
-using TaxiApplication.Domain.Enum;
-
-namespace TaxiApplication.DAL;
+﻿namespace TaxiApplication.DAL;
 
 public class TaxiApplicationDbContext : DbContext
 {

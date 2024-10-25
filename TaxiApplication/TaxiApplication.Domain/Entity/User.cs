@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using TaxiApplication.Domain.Enum;
-
-namespace TaxiApplication.Domain.Entity;
+﻿namespace TaxiApplication.Domain.Entity;
 
 public class User : Entity
 {
