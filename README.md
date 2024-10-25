@@ -4,7 +4,7 @@ Taxi Aggregator - is an online platform or mobile application that connects pass
 
 __The development was carried out using ASP.NET Core MVC.__
 
-This project is a course work on the discipline "Object-oriented programming" completed during the 4th semester (February - May 2023).
+This project is a course work on the discipline "TRPO" completed during the 7th semester.
 
 
 
@@ -106,8 +106,9 @@ __The application provides the following features:__
 
 ## Author
 
-Project author: [Eugene_Kakhnouski](https://github.com/Kaxxa27).
-
+Project authors: 
+* [Eugene Kakhnouski](https://github.com/Kaxxa27)
+* [Denis Konchik](https://github.com/denis-pptx)
 
 
 ## License
