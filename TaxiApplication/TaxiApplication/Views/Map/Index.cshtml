@@ -26,11 +26,80 @@
 				var pushpin = new Microsoft.Maps.Pushpin(
 					new Microsoft.Maps.Location(locations[i].latitude, locations[i].longitude),
 					{
+						icon: createRedArrow(45),
+						anchor: new Microsoft.Maps.Point(12, 12),
 						title: locations[i].title
 					});
 				map.entities.push(pushpin);
 			}
 		}
+		// Добавление картинки в виде человека с помощью canvas
+		function createRedArrow(heading) {
+			var c = document.createElement('canvas');
+			c.width = 50;
+			c.height = 50;
+
+			var context = c.getContext('2d');
+
+			context.beginPath();
+			context.arc(25, 25, 5, 0, 2 * Math.PI);
+			context.strokeStyle = "black";
+			//ctx.closePath();
+			context.fill();
+			//ctx.stroke();
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(25, 30);
+			context.lineTo(25, 40);
+			context.strokeStyle = "black";
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(20, 35);
+			context.lineTo(30, 35);
+			context.strokeStyle = "black";
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(25, 40);
+			context.lineTo(20, 45);
+			context.strokeStyle = "black";
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(25, 40);
+			context.lineTo(30, 45);
+			context.strokeStyle = "black";
+			context.stroke();
+			//var ctx = c.getContext('2d');
+
+			////Offset the canvas such that we will rotate around the center of our arrow
+			//ctx.translate(c.width * 0.5, c.height * 0.5);
+
+			////Rotate the canvas by the desired heading
+			//ctx.rotate(heading * Math.PI / 180);
+
+			////Return the canvas offset back to it's original position
+			//ctx.translate(-c.width * 0.5, -c.height * 0.5);
+
+			//ctx.fillStyle = '#f00';
+
+			////Draw a path in the shape of an arrow.
+			//ctx.beginPath();
+			//ctx.moveTo(12, 0);
+			//ctx.lineTo(5, 20);
+			//ctx.lineTo(12, 15);
+			//ctx.lineTo(19, 20);
+			//ctx.lineTo(12, 0);
+			//ctx.closePath();
+			//ctx.fill();
+			//ctx.stroke();
+
+			//Generate the base64 image URL from the canvas.
+			return c.toDataURL();
+		}
+
 		// Базовая функция вывода карты
 		// Была сделана, потому что при обращении к bing api и передаче туда функции создания карты (CreateMap),
 		// дальше работать с этой картой не представлялось возможности (чтобы добавить метку уже на существующую карту),

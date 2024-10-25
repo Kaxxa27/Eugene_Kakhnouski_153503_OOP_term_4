@@ -9,14 +9,9 @@ public class MapController : Controller
         LocationLists model = new LocationLists();
         var locations = new List<Locations>()
             {
-                //53.890219, 27.427219
-                //53.903243, 27.4265
-
 				new Locations(1, "Jeka","Milui Dom", 53.890219, 27.427219),      
-                new Locations(2, "Dasha","Milui Dom", 53.903243, 27.4265)
-                //new Locations(1, "Bhubaneswar","Bhubaneswar, Odisha", 20.296059, 85.824539),
-                //new Locations(2, "Hyderabad","Hyderabad, Telengana", 17.387140, 78.491684),
-                //new Locations(3, "Bengaluru","Bengaluru, Karnataka", 12.972442, 77.580643)
+                new Locations(2, "Dasha","Minsk", 53.903243, 27.4265),
+                new Locations(3, "Moscow","Russia", 55.756542, 37.614922)
             };
         model.LocationList = locations;
         return View(model);
