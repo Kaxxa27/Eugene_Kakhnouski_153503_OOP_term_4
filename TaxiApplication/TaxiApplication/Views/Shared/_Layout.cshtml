@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims;
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,16 +8,47 @@
 </head>
 
 <body>
-	<header>
-		<div>
-			<p>
-				<a asp-controller="Client" asp-action="Index" asp-area="Admin">GetAllUsersLink</a>
-				<a asp-controller="Client" asp-action="AddClient" asp-area="Admin">AddClient</a>
-				<a asp-controller="Client" asp-action="AdminPanel" asp-area="Admin">AdminPanel</a>
-				@*<a asp-controller="User" asp-action="UpdateUser" asp-area="User">UpdateUser</a>*@
-			</p>
-		</div>
-	</header>
+	<a asp-controller="Home" asp-action="Index" asp-area="">Главная</a>
+
+	<div>
+		<p>
+			@if(User.Identity.IsAuthenticated is not true)
+			{
+				<div>
+					<a asp-controller="Account" asp-action="Login" asp-area="">Войти</a>
+					<a asp-controller="Account" asp-action="Registration" asp-area="">Зарегистрироваться</a>
+				</div>
+			}
+			else
+			{
+				<a asp-controller="Account" asp-action="Logout" asp-route-area="">Выйти</a>
+				<div>		
+					<p>
+						Логин: @User.FindFirst(ClaimsIdentity.DefaultNameClaimType)?.Value.
+						Роль: @User.FindFirst(ClaimsIdentity.DefaultRoleClaimType)?.Value
+					</p>
+				</div>
+			}
+
+			@if(User.IsInRole(TaxiApplication.Domain.Enum.Role.Admin.ToString()))
+			{
+				<div>
+					<label><h1><b>Admin:</b></h1></label>
+					<a asp-controller="Client" asp-action="Index" asp-area="Admin">GetAllUsersLink</a>
+					<a asp-controller="Client" asp-action="AddClient" asp-area="Admin">AddClient</a>
+					<a asp-controller="Client" asp-action="AdminPanel" asp-area="Admin">AdminPanel</a>
+				</div>
+			}
+			else if (User.IsInRole(TaxiApplication.Domain.Enum.Role.Client.ToString()))
+			{
+				<div>
+					<label><h1><b>Client:</b></h1></label>
+					<a asp-controller="Client" asp-action="Index" asp-area="Admin">GetAllUsersLink</a>
+				</div>
+			}
+		
+		</p>
+	</div>
 
 	<div>
 		<main role="main">
