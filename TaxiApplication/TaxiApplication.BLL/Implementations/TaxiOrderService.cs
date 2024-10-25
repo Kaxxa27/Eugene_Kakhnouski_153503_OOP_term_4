@@ -290,7 +290,7 @@ public class TaxiOrderService : ITaxiOrderService
 		}
 	}
 
-	public async Task<IBaseResponse<TaxiOrder>> CalculatePrice(TaxiOrder taxiOrder)
+	public async Task<IBaseResponse<double>> CalculatePrice(TaxiOrder taxiOrder)
 	{
 		try
 		{
@@ -303,19 +303,18 @@ public class TaxiOrderService : ITaxiOrderService
 				_ => throw new NotImplementedException()
 			};
 
-			taxiOrder.Price = Math.Round(FixedPrice * taxiOrder.CurrentRoute.Distance * tariff, 2);
-
-			return new BaseResponse<TaxiOrder>()
+			return new BaseResponse<double>()
 			{
-				Data = taxiOrder,
+				Data = Math.Round(FixedPrice * taxiOrder.CurrentRoute.Distance * tariff, 2),
 				StatusCode = StatusCode.OK
 			};
 		}
 		catch (Exception ex)
 		{
 			await Console.Out.WriteLineAsync($"[TaxiOrderService.CalculatePrice] error: {ex.Message})");
-			return new BaseResponse<TaxiOrder>()
+			return new BaseResponse<double>()
 			{
+				Data = 0,
 				StatusCode = StatusCode.AllError,
 				Description = $"Внутренняя ошибка: {ex.Message}"
 			};
