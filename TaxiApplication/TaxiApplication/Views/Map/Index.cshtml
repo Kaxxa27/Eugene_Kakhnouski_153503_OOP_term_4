@@ -10,76 +10,157 @@
 	<meta charset="utf-8" />
 
 	<script type='text/javascript'>
+
+		//var locations = [
+		//	{ latitude: '@Model.LocationList.First().Latitude', longitude: '@Model.LocationList.First().Longitude', title: '@Model.LocationList.First().Description' },
+		//	{ latitude: '@Model.LocationList.ToList()[1].Latitude', longitude: '@Model.LocationList.ToList()[1].Longitude', title: '@Model.LocationList.ToList()[1].Description' },
+		//	//{ latitude: 40.7128, longitude: -74.0060 },
+		//	//{ latitude: 51.5074, longitude: -0.1278 }
+		//];
 		function GetMap() {
-			var map = new Microsoft.Maps.Map('#myMap');
-	
-		}
-
-		////// Create the infobox for the pushpin
-		////var infobox = null;
-
-		////declare addMarker function
-		//function addMarker(latitude, longitude/*, title, description, pid*/) {
-		//    var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(latitude, longitude), { color: 'green' });
-
-		//    //Create custom Pushpin
-		//    var pin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(latitude, longitude), {
-		//        title: 'Dom',
-		//        subTitle: 'Lobanka',
-		//        text: '5'
-		//    });
-
-		//    //Add the pushpin to the map
-		//    map.entities.push(pin);
-
-		//    //infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {
-		//    //    visible: false
-		//    //});
-
-		//    //marker.metadata = {
-		//    //    id: pid,
-		//    //    title: title,
-		//    //    description: description
-		//    //};
-
-		//    //Microsoft.Maps.Events.addHandler(marker, 'mouseout', hideInfobox);
-		//    //Microsoft.Maps.Events.addHandler(marker, 'mouseover', showInfobox);
-
-		//    //infobox.setMap(map);
-		//    //map.entities.push(marker);
-		//    //marker.setOptions({ enableHoverStyle: true });
-		//};
-
-		//function showInfobox(e) {
-		//    if (e.target.metadata) {
-		//        infobox.setOptions({
-		//            location: e.target.getLocation(),
-		//            title: e.target.metadata.title,
-		//            description: e.target.metadata.description,
-		//            visible: true
-		//        });
-		//    }
-		//}
-
-		//function hideInfobox(e) {
-		//    infobox.setOptions({ visible: false });
-		//}
-
-		@if (Model.LocationList != null)
-		{
-			foreach (var item in Model.LocationList.ToList())
-			{
-				// @:addMarker(@item.Latitude, @item.Longitude, @item.Title, @item.Description, @item.LocationId);
-				@:addMarker(@item.Latitude, @item.Longitude);
+			var map = new Microsoft.Maps.Map('#myMap', {
+				//center: new Microsoft.Maps.Location(@Model.LocationList.First().Longitude, @Model.LocationList.First().Latitude)
+				//center: new Microsoft.Maps.Location(53.890219, 27.427219/*47.6149, -122.1941*/)
+			});
+			var locations = @Html.Raw(Json.Serialize(Model.LocationList));
+			for (var i = 0; i < locations.length; i++) {
+				var pushpin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(locations[i].latitude, locations[i].longitude), { title: locations[i].title });
+				map.entities.push(pushpin);
 			}
-		}
+
+			//for (var i = 0; i < locations.length; i++) {
+			//	var pushpin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(locations[i].latitude, locations[i].longitude), {title: locations[i].title});
+			//	map.entities.push(pushpin);
+			//}
+				//var center = map.getCenter();
+
+				//var pin = new Microsoft.Maps.Pushpin(center, {
+				//	title: 'Lobanka',
+				//	subTitle: 'Minsk',
+				//	text: '1'
+				//});
+				//map.entities.push(pin);
+
+				//var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(@Model.LocationList.First().Latitude,
+				//																	@Model.LocationList.First().Longitude)),
+				//	{
+				//		//color: 'green'
+				//		//id: pid,
+				//		//title: title,
+				//		//description: description
+				//	});
+				//map.entities.push(marker);
+				//var center = map.getCenter();
+
+				//Create custom Pushpin
+				//var pin = new Microsoft.Maps.Pushpin(center, {
+				//	title: 'Microsoft',
+				//	subTitle: 'City Center',
+				//	text: '1'
+				//});
+
+				//Add the pushpin to the map
+				//map.entities.push(pin);
+
+				//var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(@Model.LocationList.First().Latitude, @Model.LocationList.First().Longitude), null);
+				//map.entities.push(marker);
+
+		@*
+					@if (Model.LocationList != null)
+					{
+					foreach (var item in Model.LocationList)
+					{
+					<text>
+					addMarker(@item.Latitude, @item.Longitude, @item.Title, @item.Description, @item.LocationId);
+					</text>
+					//@:addMarker(@item.Latitude, @item.Longitude, @item.Title, @item.Description, @item.LocationId);
+					//@:addMarker(@item.Latitude, @item.Longitude);
+					}
+					}
+					*@
+				}
+			//function GetMap() {
+			//	var map = new Microsoft.Maps.Map('#myMap');
+
+			//}
+
+			//// Create the infobox for the pushpin
+			//var infobox = null;
+
+			////declare addMarker function
+			function addMarker(latitude, longitude, title, description, pid, map) {
+
+				var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(latitude, longitude), null);
+				//{
+				//	color: 'green'
+				//	id: pid,
+				//	title: title,
+				//	description: description
+				//});
+				map.entities.push(marker);
+				//infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {
+				//    visible: false
+				//});
+
+				//marker.metadata = {
+				//    id: pid,
+				//    title: title,
+				//    description: description
+				//};
+
+				//Microsoft.Maps.Events.addHandler(marker, 'mouseout', hideInfobox);
+				//Microsoft.Maps.Events.addHandler(marker, 'mouseover', showInfobox);
+
+				//infobox.setMap(map);
+
+
+				//marker.setOptions({ enableHoverStyle: true });
+			};
+
+			//function showInfobox(e) {
+			//    if (e.target.metadata) {
+			//        infobox.setOptions({
+			//            location: e.target.getLocation(),
+			//            title: e.target.metadata.title,
+			//            description: e.target.metadata.description,
+			//            visible: true
+			//        });
+			//    }
+			//}
+
+			//function hideInfobox(e) {
+			//    infobox.setOptions({ visible: false });
+			//}
+
+		@*
+
+
+				@if (Model.LocationList != null)
+				{
+				foreach (var item in Model.LocationList)
+				{
+				var cor = new BingMapsRESTToolkit.Coordinate(item.Latitude, item.Longitude);
+
+				}
+				}
+				@if (Model.LocationList != null)
+				//{
+				//	foreach (var item in Model.LocationList)
+				//	{
+				//		 @:addMarker(@item.Latitude, @item.Longitude, @item.Title, '@item.Description', '@item.LocationId');
+				//		//@:addMarker(@item.Latitude, @item.Longitude);
+				//	}
+				//}
+				*@
+
+
 	</script>
 
-	
+
 	<!-- Reference to the Bing Maps SDK -->
-	    <script type='text/javascript'
-				src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJAinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJ'
-				async defer></script>
+	<script type='text/javascript'
+			src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJAinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJ'
+			async defer></script>
 </head>
 <body>
 	<div id="myMap" style="position:relative;width:1800px;height:600px;"></div>
