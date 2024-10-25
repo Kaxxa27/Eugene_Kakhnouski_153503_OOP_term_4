@@ -18,16 +18,16 @@ namespace TaxiApplication.Controllers
 
 		[HttpGet]
 		public IActionResult AddItem() => View();
-		[HttpPost]
-		public IActionResult AddItem(User user)
-		{
-			if (ModelState.IsValid)
-			{
-				var response = _repository.UserRepository.AddAsync(user);
-				return RedirectToAction("Index");
-			}
-			//ModelState.AddModelError("", Response.Description);
-			return View(user);
-		}
+		//[HttpPost]
+		//public IActionResult AddItem(User user)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		var response = _repository.UserRepository.AddAsync(user);
+		//		return RedirectToAction("Index");
+		//	}
+		//	//ModelState.AddModelError("", Response.Description);
+		//	return View(user);
+		//}
 	}
 }
