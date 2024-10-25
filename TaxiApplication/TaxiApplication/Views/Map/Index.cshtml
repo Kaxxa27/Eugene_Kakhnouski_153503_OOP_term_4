@@ -10,83 +10,59 @@
 	<meta charset="utf-8" />
 
 	<script type="text/javascript">
+
 		var map;
+		var directionsManager;
 		// Создание карты с bign key
 		function CreateMap() {
-			 map = new Microsoft.Maps.Map('#myMap', {
-				credentials: 'AinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJAinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJ'
-			 });
+			map = new Microsoft.Maps.Map('#myMap', {
+				credentials: 'AovVDz7evAPwd8iLhM6pBwRHM3wJD5Z2OJHpYwFeRktRbw5wF5-wYkaf9JycZGHW'
+			});
 
-			//var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
-			//directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
-
-			//Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
-   //             var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
-   //             directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
-   //             directionsManager.showInputPanel('directionsInputContainer');
-   //         });
-
-			//document.getElementById('calculateRoute').addEventListener('click', function () {
-			//	directionsManager.clearAll();
-			//	directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ address: document.getElementById('start').value }));
-			//	directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ address: document.getElementById('end').value }));
-			//	directionsManager.calculateDirections();
-			//});
-	
 			return map;
 		}
 
-		function calculateRoute() {
-			var start = document.getElementById("start").value;
-			var end = document.getElementById("end").value;
+		// Построение маршрута по двум заданным точкам с помощью модуля Directions
+		function GetRoute(start, end) {
+			
+			ClearMap();
+			if (directionsManager) {
+				// Set Route Mode to driving
 
-			Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
-				var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
-				var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: start });
-				var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: end });
-				directionsManager.addWaypoint(waypoint1);
-				directionsManager.addWaypoint(waypoint2);
+				directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+	
+				//var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: 'Start', location: new Microsoft.Maps.Location(/*53.897378, 27.438627*/53.890219, 27.427219) });
+				//var endWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: 'End', location: new Microsoft.Maps.Location(/*53.937364, 27.604317*/53.903243, 27.4265) });
+				var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: start });
+				var endWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: end });
+
+				directionsManager.addWaypoint(startWaypoint);
+				directionsManager.addWaypoint(endWaypoint);
+
 				directionsManager.calculateDirections();
-			});
+			} else {
+				//Load the Directions module and create a directions manager
+				Microsoft.Maps.loadModule('Microsoft.Maps.Directions', {
+					callback: function () {
+						//Create the directions manager
+						directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+						//Perfrom route logic
+						GetRoute(start, end);
+
+					}
+				});
+			}
 		}
-		//function GetRoute() {
-		//	ClearMap();
 
-		//	if (directionsManager) {
-		//		// Определяем Route Mode
-		//		directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+		// Очистка всех точек на карте и маршрутов
+		function ClearMap() {
 
-		//		// Создаем точки начала и конца пути
-		//		var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: document.getElementById('start').value });
-		//		var endWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: document.getElementById('end').value });
+			map.entities.clear();
+			if (directionsManager) {
+				directionsManager.clearAll();
+			}
+		}
 
-		//		directionsManager.addWaypoint(startWaypoint);
-		//		directionsManager.addWaypoint(endWaypoint);
-
-		//		directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
-
-		//		// Считаем расстояния
-		//		directionsManager.calculateDirections();
-		//	} else {
-		//		//Загружаем модуль directions module и создаем directions manager.
-		//		Microsoft.Maps.loadModule('Microsoft.Maps.Directions', {
-		//			callback: function () {
-		//				//Создаем directions manager
-		//				directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
-
-		//				//Логика маршрута
-		//				GetRoute();
-		//			}
-		//		});
-		//	}
-		//}
-
-		//function ClearMap()
-		//{
-		//	map.entities.clear();
-		//}
-		
-		// Добавление маркеров на карту по координатам
 		function AddMarkers(map, locations) {
 			for (var i = 0; i < locations.length; i++) {
 
@@ -134,14 +110,14 @@
 		//			visible: true
 		//		});
 		//	}
-		//}	
+		//}
 		function pushpinMouseOver(e) {
 			//Make sure the infobox has metadata to display.
 			if (e.target.metadata) {
 				//Set the infobox options with the metadata of the pushpin.
-				infobox.setOptions({	
-					maxHeight:100,
-					maxWidth:300,
+				infobox.setOptions({
+					maxHeight: 100,
+					maxWidth: 300,
 					location: e.target.getLocation(),
 					title: e.target.metadata.title,
 					description: e.target.metadata.description,
@@ -153,7 +129,7 @@
 							eventHandler: function () {
 								alert('{pin}');
 							}
-						}, 
+						},
 						{
 							label: 'Handler2',
 							eventHandler: function () {
@@ -163,13 +139,13 @@
 				});
 			}
 		}
-		
+
 		function pushpinMouseOut(e) {
 			if (e.target.metadata) {
 				infobox.setOptions({
 					visible: false
 				});
-			}	
+			}
 		}
 
 		// Добавление картинки в виде человека с помощью canvas
@@ -244,27 +220,28 @@
 		// дальше работать с этой картой не представлялось возможности (чтобы добавить метку уже на существующую карту),
 		// а создание новой карты лишь создавало второй объект.
 		function GlobalStart() {
-			@if (Model.LocationList != null)
-			{
-				<text>
-					var locations = @Html.Raw(Json.Serialize(Model.LocationList));
-					var map = CreateMap();
-					AddMarkers(map, locations);
-				</text>
-			}
-			else
-			{
-				<text>
-						var locations = [
-						{ latitude: 47.6062, longitude: -122.3321, title: 'Seattle' },
-						{ latitude: 40.7128, longitude: -74.0060, title: 'New York' },
-						{ latitude: 51.5074, longitude: -0.1278, title: 'London' }
-					];
-					var map = CreateMap();
-					AddMarkers(map, locations);
-				</text>
-			}
+		@if (Model.LocationList != null)
+		{
+			<text>
+				var locations = @Html.Raw(Json.Serialize(Model.LocationList));
+				var map = CreateMap();
+				//GetRoute();
+				AddMarkers(map, locations);
+			</text>
 		}
+		else
+		{
+			<text>
+					var locations = [
+					{ latitude: 47.6062, longitude: -122.3321, title: 'Seattle' },
+					{ latitude: 40.7128, longitude: -74.0060, title: 'New York' },
+					{ latitude: 51.5074, longitude: -0.1278, title: 'London' }
+				];
+				var map = CreateMap();
+				AddMarkers(map, locations);
+			</text>
+		}
+				}
 	</script>
 
 	<!-- Reference to the Bing Maps SDK -->
@@ -280,29 +257,9 @@
 
 </head>
 <body>
-
-	<div>
-        <label for="start">Начальный адрес:</label>
-        <input type="text" id="start" name="start" />
-    </div>
-    <div>
-        <label for="end">Конечный адрес:</label>
-        <input type="text" id="end" name="end" />
-    </div>
-    <button type="button" onclick="calculateRoute()">Построить маршрут</button>
-
-@*	<div>
-		<input type="text" id="start" placeholder="Введите начальный адрес">
-		<input type="text" id="end" placeholder="Введите конечный адрес">
-		<button id="calculateRoute">Построить маршрут</button>
-	</div>*@
-	@*<div id='printoutPanel'>
-		<label> Denis LOX</label>
-	</div>
-	<div id='directionsInputContainer'></div>*@
-@*	<div id='searchBoxContainer'>
-		<input type='text' id='searchBox' />
-	</div>*@
+	<input type="text" id="start" />
+	<input type="text" id="end" />
+	<button onclick="GetRoute(document.getElementById('start').value, document.getElementById('end').value)">Рассчитать маршрут</button>
 	<div id="myMap" style="position:relative;width:1800px;height:600px;"></div>
 </body>
 </html>
