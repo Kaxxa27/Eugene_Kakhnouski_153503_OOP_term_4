@@ -16,7 +16,7 @@ public class TaxiApplicationDbContext : DbContext
 	public DbSet<User> Users { get; set; }
 	public DbSet<Client> Clients { get; set; }
 	public DbSet<ClientProfile> clientProfiles { get; set; }
-	public DbSet<UserProfile> userProfiles { get; set; }
+	//public DbSet<UserProfile> userProfiles { get; set; }
 	public TaxiApplicationDbContext(DbContextOptions<TaxiApplicationDbContext> dbContextOptions) : base(dbContextOptions)
 	{
 		//Database.EnsureDeleted();
