@@ -79,8 +79,9 @@ public class AccountService : IAccountService
                 };
             }
 
-            await _unitOfWork.ClientProfileRepository.AddAsync(client.Profile);
             await _unitOfWork.ClientRepository.AddAsync(client);
+           // await _unitOfWork.ClientProfileRepository.AddAsync(client.Profile);
+            
 
             return new BaseResponse<ClaimsPrincipal>()
             {
