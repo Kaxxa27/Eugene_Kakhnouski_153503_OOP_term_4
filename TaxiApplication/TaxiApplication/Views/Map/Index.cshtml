@@ -20,9 +20,20 @@
 			return map;
 		}
 
+
 		// Добавление маркеров на карту по координатам
 		function AddMarkers(map, locations) {
 			for (var i = 0; i < locations.length; i++) {
+
+				//Create an infobox at the center of the map but don't show it.
+				infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+					showCloseButton: false,
+					visible: false
+				});
+
+				//Assign the infobox to a map instance.
+				infobox.setMap(map);
+
 				var pushpin = new Microsoft.Maps.Pushpin(
 					new Microsoft.Maps.Location(locations[i].latitude, locations[i].longitude),
 					{
@@ -30,9 +41,72 @@
 						anchor: new Microsoft.Maps.Point(12, 12),
 						title: locations[i].title
 					});
+
+				//Store some metadata with the pushpin.
+				pushpin.metadata = {
+					pin: locations[i].pin,
+					title: locations[i].title,
+					description: locations[i].description
+				};
+
+				//Add a mouse events to the pushpin.
+				//Microsoft.Maps.Events.addHandler(pushpin, 'click', pushpinClicked);
+				Microsoft.Maps.Events.addHandler(pushpin, 'mouseover', pushpinMouseOver);
+				Microsoft.Maps.Events.addHandler(pushpin, 'mouseout', pushpinMouseOut);
+
 				map.entities.push(pushpin);
 			}
 		}
+
+		//function pushpinClicked(e) {
+		//	//Make sure the infobox has metadata to display.
+		//	if (e.target.metadata) {
+		//		//Set the infobox options with the metadata of the pushpin.
+		//		infobox.setOptions({
+		//			location: e.target.getLocation(),
+		//			title: e.target.metadata.title,
+		//			description: e.target.metadata.description,
+		//			visible: true
+		//		});
+		//	}
+		//}	
+		function pushpinMouseOver(e) {
+			//Make sure the infobox has metadata to display.
+			if (e.target.metadata) {
+				//Set the infobox options with the metadata of the pushpin.
+				infobox.setOptions({	
+					maxHeight:100,
+					maxWidth:300,
+					location: e.target.getLocation(),
+					title: e.target.metadata.title,
+					description: e.target.metadata.description,
+					visible: true,
+
+					actions: [
+						{
+							label: 'Handler1',
+							eventHandler: function () {
+								alert('{pin}');
+							}
+						}, 
+						{
+							label: 'Handler2',
+							eventHandler: function () {
+								alert('Handler2');
+							}
+						}]
+				});
+			}
+		}
+		
+		function pushpinMouseOut(e) {
+			if (e.target.metadata) {
+				infobox.setOptions({
+					visible: false
+				});
+			}	
+		}
+
 		// Добавление картинки в виде человека с помощью canvas
 		function createRedArrow(heading) {
 			var c = document.createElement('canvas');
