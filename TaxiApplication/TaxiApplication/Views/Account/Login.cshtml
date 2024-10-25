@@ -1,7 +1,7 @@
 ﻿@model TaxiApplication.BLL.ViewModels.LoginViewModel
 
 @{
-    Layout = null;
+
     ViewBag.Title = "Login";
 }
 
@@ -12,7 +12,7 @@
 
 
 <form asp-action="Login" asp-controller="Account" asp-area="">
-    <div class="max-width-200  mx-auto">
+    <div class="max-width-200 mx-auto">
         <div class="form-floating mb-3 ">
             <input asp-for="Login" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label asp-for="Login" for="floatingInput">Login</label>
@@ -33,12 +33,15 @@
             <input asp-for="Password" />  
         </p>*@
         <p>
-            <div class="btn-group d-flex justify-content-center mx-auto" role="group" aria-label="Basic example">
+            <div>
                 <input class="btn btn-outline-success" type="submit" value="Login" />
                 <button class="btn btn-outline-secondary" type="button" onclick="location.href='@Url.Action("Registration", "Account")'">Registration</button>
             </div>
-          
 
+            @*Группа кнопок*@
+            @*<div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic example">*@       
+            @*</div>*@
+         
         </p>
     </div>
 </form>
