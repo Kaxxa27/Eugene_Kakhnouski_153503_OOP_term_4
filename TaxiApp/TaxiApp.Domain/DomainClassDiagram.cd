@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TaxiApp.Domain.Entities.CarEntity.Car" Collapsed="true">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAEAAAABAAAAAAAAAAAAAgAABAAA=</HashCode>
+      <FileName>Entities\CarEntity\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaxiApp.Domain.Entities.OrderEntity.Order" Collapsed="true">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgIAAAAAAAAEAAAAAARAAAABAECAABIAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\OrderEntity\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaxiApp.Domain.Entities.PersonEntities.Administrator" Collapsed="true">
+    <Position X="15.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAACEAA=</HashCode>
+      <FileName>Entities\PersonEntities\Administrator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaxiApp.Domain.Entities.PersonEntities.Driver" Collapsed="true">
+    <Position X="13.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAABAAAEAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PersonEntities\Driver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaxiApp.Domain.Entities.PersonEntities.Person" Collapsed="true">
+    <Position X="15.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAACAAAEAAAAQABAIAAAACAAAQIAAAAAA=</HashCode>
+      <FileName>Entities\PersonEntities\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaxiApp.Domain.Entities.PersonEntities.User" Collapsed="true">
+    <Position X="17.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAMAAAAAAAAAAAAAAECAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PersonEntities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaxiApp.Domain.Entities.TariffEntity.Tariff" Collapsed="true">
+    <Position X="8.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TariffEntity\Tariff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaxiApp.Domain.Entities.TaxiCompanyEntity.TaxiCompany" Collapsed="true">
+    <Position X="20" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAIAAAAICEAA=</HashCode>
+      <FileName>Entities\TaxiCompanyEntity\TaxiCompany.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaxiApp.Domain.Entities.Entity" Collapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TaxiApp.Domain.Abstractions.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="17" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAEAAAAAIAgAAAAAAAAAIIE=</HashCode>
+      <FileName>Abstractions\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TaxiApp.Domain.Abstractions.IUnitOfWork" Collapsed="true">
+    <Position X="19" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAAAAgAAECAABAEAAAAAAAAAACAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Abstractions\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
