@@ -37,6 +37,7 @@
 					<a asp-controller="Client" asp-action="Index" asp-area="Admin">GetAllUsersLink</a>
 					<a asp-controller="Client" asp-action="AddClient" asp-area="Admin">AddClient</a>
 					<a asp-controller="Client" asp-action="AdminPanel" asp-area="Admin">AdminPanel</a>
+					<a asp-controller="Map" asp-action="Index" asp-area="">Get_Map</a>
 				</div>
 			}
 			else if (User.IsInRole(TaxiApplication.Domain.Enum.Role.Client.ToString()))
