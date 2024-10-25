@@ -8,19 +8,22 @@
 
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/TaxiApplication.WEB.styles.css" asp-append-version="true" />
 </head>
 <body>
 	
 
 	<div>
-		<p>
+		<p>	
 			@if(User.Identity.IsAuthenticated is not true)
 			{
-				<div>
+				Context.Response.Redirect("/Account/Login");
+			
+				@*<div>
 					<a asp-controller="Account" asp-action="Login" asp-area="">Войти</a>
 					<a asp-controller="Account" asp-action="Registration" asp-area="">Зарегистрироваться</a>
-				</div>
+				</div>*@
 			}
 			else
 			{

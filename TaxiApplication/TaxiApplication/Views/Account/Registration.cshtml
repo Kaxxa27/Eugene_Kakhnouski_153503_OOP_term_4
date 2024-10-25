@@ -1,5 +1,6 @@
 ﻿@model TaxiApplication.Domain.Entity.Client
 @{
+    Layout = null;
     ViewBag.Title = "Registration";
 }
 
@@ -43,6 +44,7 @@
 
         <p>
             <input type="submit" value="Registration" />
+            <button type="button" onclick="location.href='@Url.Action("Login", "Account")'">Login</button>
         </p>
     </div>
 </form>
