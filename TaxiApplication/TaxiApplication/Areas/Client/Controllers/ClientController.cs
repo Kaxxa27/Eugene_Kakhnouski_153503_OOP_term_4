@@ -14,51 +14,67 @@ public class ClientController : Controller
 	}
 
 
-    [HttpGet]
-    public async Task<IActionResult> ProfileEdit()
+	[HttpGet]
+	public async Task<IActionResult> ProfileEdit()
 	{
-	   var client = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data;
-       return View(client);
-    }	
+		var client = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data;
+		return View(client);
+	}
 
 	[HttpPost]
 	public async Task<IActionResult> ProfileEdit(Client client)
 	{
 		client.Profile.Photo = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data!.Profile.Photo;
-        var response = await _clientService.UpdateClient(client);
+		var response = await _clientService.UpdateClient(client);
 
-        if (response.StatusCode == Domain.Enum.StatusCode.OK)
-        {
-            return View(client);
-        }
-        return View(client/*Страница ошибки*/);
-    }
+		if (response.StatusCode == Domain.Enum.StatusCode.OK)
+		{
+			return View(client);
+		}
+		return View(client/*Страница ошибки*/);
+	}
 
-    [HttpPost]
-    public async Task<IActionResult> UploadPhoto(IFormFile photoFile)
-    {
+	[HttpPost]
+	public async Task<IActionResult> UploadPhoto(IFormFile photoFile)
+	{
 		try
 		{
-            if (photoFile != null && photoFile.Length > 0)
-            {
-                byte[] photoBytes;
-                using (var memoryStream = new MemoryStream())
-                {
-                    await photoFile.CopyToAsync(memoryStream);
-                    photoBytes = memoryStream.ToArray();
-                }
-                var client = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data;
-                client!.Profile.Photo = photoBytes;
+			if (photoFile != null && photoFile.Length > 0)
+			{
+				byte[] photoBytes;
+				using (var memoryStream = new MemoryStream())
+				{
+					await photoFile.CopyToAsync(memoryStream);
+					photoBytes = memoryStream.ToArray();
+				}
+				var client = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data;
+				client!.Profile.Photo = photoBytes;
 				await _clientService.UpdateClient(client);
-            }
+			}
 
 			return RedirectToAction("ProfileEdit");
-        }
+		}
 		catch (Exception ex)
 		{
-            await Console.Out.WriteLineAsync($"[ClientController.UploadPhoto] error: {ex.Message})");
-            return RedirectToAction("ProfileEdit");
-        }
+			await Console.Out.WriteLineAsync($"[ClientController.UploadPhoto] error: {ex.Message})");
+			return RedirectToAction("ProfileEdit");
+		}
+	}
+
+
+	[HttpPost]
+	public async Task<IActionResult> DeleteProfile(Client client)
+	{
+		try
+		{
+			await _clientService.DeleteClient(client.Id);
+			return RedirectToAction("Logout", "Account", new { area = "" });
+		}
+		catch (Exception ex)
+		{
+			await Console.Out.WriteLineAsync($"[ClientController.DeleteProfile] error: {ex.Message})");
+			return RedirectToAction("Logout", "Account", new { area = "" });
+		}
     }
 
 
