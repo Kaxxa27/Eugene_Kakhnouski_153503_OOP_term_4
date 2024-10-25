@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaxiApplication.Domain.Entity;
 
-public class Entity
+public abstract class Entity
 {
 	public int Id { get; set; }
 }
