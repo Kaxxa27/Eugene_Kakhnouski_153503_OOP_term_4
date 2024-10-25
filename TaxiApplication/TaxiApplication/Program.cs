@@ -26,7 +26,11 @@ public class Program
 
 		var connection = builder.Configuration.GetConnectionString("SQLiteConnection");
 		builder.Services.AddDbContext<TaxiApplicationDbContext>(options =>
-			options.UseSqlite(connection));
+		{
+			options.UseSqlite(connection);
+            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+        });
 
 		var app = builder.Build();
 
