@@ -233,4 +233,56 @@ public class TaxiOrderService : ITaxiOrderService
 			};
 		}
 	}
+
+
+	public async Task<IBaseResponse<IEnumerable<TaxiOrder>>> GetAllClientTaxiOrders(int id)
+	{
+		try
+		{
+			var AllClientOrders = (await _unitOfWork.TaxiOrderRepository.ListAllAsync())
+												.Where(x => x.ClientId == id)
+												.ToList();
+
+			if (AllClientOrders is null)
+			{
+				return new BaseResponse<IEnumerable<TaxiOrder>>()
+				{
+					Description = "Заказы отсутсвуют.",
+					StatusCode = StatusCode.UserNotFound
+				};
+			}
+
+			foreach (var order in AllClientOrders)
+			{
+				var route = await _unitOfWork.RouteRepository.FirstOrDefaultAsync(cl => cl.TaxiOrderId == order.Id);
+
+				if (route == null)
+				{
+					return new BaseResponse<IEnumerable<TaxiOrder>>()
+					{
+						StatusCode = StatusCode.AllError,
+						Description = $"Заказ с таким маршрутом не найден."
+					};
+				}
+				order.CurrentRoute = route;
+			}
+
+			return new BaseResponse<IEnumerable<TaxiOrder>>()
+			{
+				Data = AllClientOrders,
+				StatusCode = StatusCode.OK
+			};
+
+		}
+		catch (Exception ex)
+		{
+			await Console.Out.WriteLineAsync($"[TaxiOrderService.GetAllClientTaxiOrders] error: {ex.Message})");
+			return new BaseResponse<IEnumerable<TaxiOrder>>()
+			{
+				StatusCode = StatusCode.AllError,
+				Description = $"Внутренняя ошибка: {ex.Message}"
+			};
+		}
+	}
+
 }

@@ -68,7 +68,7 @@ public class MapController : Controller
 	[HttpGet]
 	public IActionResult GetTaxiOrders()
 	{
-		return View(_taxiOrderService.GetAllTaxiOrders().Result.Data);
+		return View(_taxiOrderService.GetAllClientTaxiOrders(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)).Result.Data);
 	}
 
 	[HttpPost]
