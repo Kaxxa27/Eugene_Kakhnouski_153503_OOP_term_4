@@ -1,4 +1,4 @@
-﻿@model TaxiApplication.WEB.Controllers.Locations
+﻿@model TaxiApplication.Domain.Entity.Route.Route
 @{
 	ViewBag.Title = "Map";
 }
@@ -12,12 +12,15 @@
 <body>
 	<form asp-controller="Map" asp-action="BuildRoute" method="post" asp-area="">
 		<p>
-			<label asp-for="Start"></label>
-			<input asp-for="Start" />
+			<label asp-for="Description"></label>
+			<input asp-for="Description" />
 		</p>
 		<p>
-			<label asp-for="End"></label>
-			<input asp-for="End" />
+			<label asp-for="StartLocation"></label>
+			<input asp-for="StartLocation" />
+
+			<label asp-for="EndLocation"></label>
+			<input asp-for="EndLocation" />
 		</p>
 		<p>
 			<input type="submit" value="BuildRoute" />
