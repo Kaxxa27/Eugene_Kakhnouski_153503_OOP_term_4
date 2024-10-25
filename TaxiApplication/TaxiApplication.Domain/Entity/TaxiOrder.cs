@@ -2,10 +2,10 @@
 
 public class TaxiOrder : Entity
 {
-	public Route.Route CurrentRoute { get; set; }
+	public Route.Route? CurrentRoute { get; set; }
 	public Tariff Tariff { get; set; }
 	public int NumberOfPassengers { get; set; }
-	public string DriverGenderPreference { get; set; } = string.Empty;
+	public DriverGender DriverGenderPreference { get; set; }
 	public PaymentMethod PaymentMethod { get; set; }
     public int ClientId { get; set; }
 
