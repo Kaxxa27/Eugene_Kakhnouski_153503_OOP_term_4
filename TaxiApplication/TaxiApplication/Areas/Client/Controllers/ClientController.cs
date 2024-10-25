@@ -5,13 +5,64 @@ public class ClientController : Controller
 {
 	ITaxiOrderService _taxiOrderService { get; set; }
 	IMapService _mapService { get; set; }
-	public ClientController(ITaxiOrderService taxiOrderService, IMapService mapService)
+	IClientService _clientService { get; set; }
+	public ClientController(ITaxiOrderService taxiOrderService, IMapService mapService, IClientService clientService)
 	{
 		_taxiOrderService = taxiOrderService;
 		_mapService = mapService;
+		_clientService = clientService;
 	}
 
-	[HttpGet]
+
+    [HttpGet]
+    public async Task<IActionResult> ProfileEdit()
+	{
+	   var client = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data;
+       return View(client);
+    }	
+
+	[HttpPost]
+	public async Task<IActionResult> ProfileEdit(Client client)
+	{
+		client.Profile.Photo = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data!.Profile.Photo;
+        var response = await _clientService.UpdateClient(client);
+
+        if (response.StatusCode == Domain.Enum.StatusCode.OK)
+        {
+            return View(client);
+        }
+        return View(client/*Страница ошибки*/);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UploadPhoto(IFormFile photoFile)
+    {
+		try
+		{
+            if (photoFile != null && photoFile.Length > 0)
+            {
+                byte[] photoBytes;
+                using (var memoryStream = new MemoryStream())
+                {
+                    await photoFile.CopyToAsync(memoryStream);
+                    photoBytes = memoryStream.ToArray();
+                }
+                var client = (await _clientService.GetClient(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!))).Data;
+                client!.Profile.Photo = photoBytes;
+				await _clientService.UpdateClient(client);
+            }
+
+			return RedirectToAction("ProfileEdit");
+        }
+		catch (Exception ex)
+		{
+            await Console.Out.WriteLineAsync($"[ClientController.UploadPhoto] error: {ex.Message})");
+            return RedirectToAction("ProfileEdit");
+        }
+    }
+
+
+    [HttpGet]
 	public IActionResult CreateTaxiOrder() => View();
 
 	[HttpPost]
