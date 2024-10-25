@@ -1,0 +1,49 @@
+﻿@model TaxiApplication.Domain.Entity.Client
+@{
+    ViewBag.Title = "Registration";
+}
+
+<h2>Registration</h2>
+
+<form asp-action="Registration" asp-controller="Account">
+    <div>
+        <p>
+            <label asp-for="Login"></label>
+            <input asp-for="Login" />
+        </p>
+        <p>
+            <label asp-for="Password"></label>
+            <input asp-for="Password" />
+        </p>
+        <p>
+            <label asp-for="PasswordConfirm"></label>
+            <input asp-for="PasswordConfirm" />
+        </p>
+        <input type="hidden" name="Role" value="@TaxiApplication.Domain.Enum.Role.Client">
+        <p>
+            <label asp-for="Profile.Name"></label>
+            <input asp-for="Profile.Name" />
+        </p>
+        <p>
+            <label asp-for="Profile.Surname"></label>
+            <input asp-for="Profile.Surname" />
+        </p>
+        <p>
+            <label asp-for="Profile.Email"></label>
+            <input asp-for="Profile.Email" />
+        </p>
+        <p>
+            <label asp-for="Profile.Age"></label>
+            <input asp-for="Profile.Age" />
+        </p>
+        <p>
+            <label asp-for="Profile.PhoneNumber"></label>
+            <input asp-for="Profile.PhoneNumber" />
+        </p>
+
+        <p>
+            <input type="submit" value="Registration" />
+        </p>
+    </div>
+</form>
+<div asp-validation-summary="All"></div>

@@ -1,0 +1,26 @@
+﻿@model TaxiApplication.BLL.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<form asp-action="Login" asp-controller="Account">
+    <div>
+        <p>
+            <label asp-for="Login"></label>
+            <input asp-for="Login" />
+            @*<span asp-validation-for="Login" />*@
+        </p>
+        <p>
+            <label asp-for="Password"></label>
+            <input asp-for="Password" />
+           @* <span asp-validation-for="Password" />*@
+        </p>
+        <p>
+            <input type="submit" value="Login" />
+        </p>
+    </div>
+</form>
+<div asp-validation-summary="All"></div>
