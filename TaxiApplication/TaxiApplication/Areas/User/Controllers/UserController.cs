@@ -9,46 +9,46 @@ namespace TaxiApplication.WEB.Areas.User.Controllers
     [Area("User")]
     public class UserController : Controller
     {
-        IUserService _userService;
+        IClientService _clientService;
 
-        public UserController(IUserService userService)
+        public UserController(IClientService clientService)
         {
-            _userService = userService;
+			_clientService = clientService;
         }
 
         #region HttpGet
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_userService.GetAllUsers().Result.Data);
+            return View(_clientService.GetAllClients().Result.Data);
         }
 
         [HttpGet]
-        public IActionResult AddUser() { return View(); }
+        public IActionResult AddClient() { return View(); }
 
         [HttpGet]
-        public IActionResult UpdateUser(int id) 
+        public IActionResult UpdateClient(int id) 
         { 
-            return View(_userService.FirstOrDefault(x => x.Id == id).Result.Data); 
+            return View(_clientService.FirstOrDefault(x => x.Id == id).Result.Data); 
         }
 
         [HttpGet]
-        public IActionResult DeleteUser() { return View(); }  
+        public IActionResult DeleteClient() { return View(); }  
         
         [HttpGet]
-        public IActionResult AdminPanel() { return View(_userService.GetAllUsers().Result.Data); }
+        public IActionResult AdminPanel() { return View(_clientService.GetAllClients().Result.Data); }
 
         [HttpGet]
-        public IActionResult FindUser() { return View(); }
+        public IActionResult FindClient() { return View(); }
         #endregion
 
         #region HttpPost
         [HttpPost]
-        public async Task<IActionResult> AddUser(TaxiApplication.Domain.Entity.User user)
+        public async Task<IActionResult> AddClient(TaxiApplication.Domain.Entity.Client client)
         {
             if (ModelState.IsValid)
             {
-                var response = await _userService.AddUser(user);
+                var response = await _clientService.AddClient(client);
 
                 if (response.StatusCode == Domain.Enum.StatusCode.OK)
                 {
@@ -57,13 +57,13 @@ namespace TaxiApplication.WEB.Areas.User.Controllers
 
                 ModelState.AddModelError("", response.Description);
             }
-            return View(user);
+            return View(client);
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteClient(int id)
         {
-            var response = await _userService.DeleteUser(id);
+            var response = await _clientService.DeleteClient(id);
 
             if (response.StatusCode == Domain.Enum.StatusCode.OK)
             {
@@ -73,9 +73,9 @@ namespace TaxiApplication.WEB.Areas.User.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(TaxiApplication.Domain.Entity.User user)
+        public async Task<IActionResult> UpdateClient(TaxiApplication.Domain.Entity.Client client)
         {
-            var response = await _userService.UpdateUser(user);
+            var response = await _clientService.UpdateClient(client);
 
             if (response.StatusCode == Domain.Enum.StatusCode.OK)
             {

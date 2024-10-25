@@ -1,6 +1,7 @@
-﻿@model IEnumerable<TaxiApplication.Domain.Entity.User>
+﻿@model IEnumerable<TaxiApplication.Domain.Entity.Client>
 @{
-	ViewBag.Title = "GetAllUsers";
+	ViewBag.Title = "GetAllClient";
+    
 }
 
 <div>
@@ -8,12 +9,13 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Login</th>
+                <th>Password</th>
                 <th>Name</th>
                 <th>Surname</th>
+                <th>Age</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Password</th>
-
             </tr>
         </thead>
         <tbody>
@@ -21,11 +23,13 @@
             {
                 <tr>
                     <td>@user.Id</td>
-                    <td>@user.Name</td>
-                    <td>@user.Surname</td>
-                    <td>@user.Email</td>
-                    <td>@user.PhoneNumber</td>
+                    <td>@user.Login</td>
                     <td>@user.Password</td>
+                    <td>@user.Profile.Name</td>
+                    <td>@user.Profile.Surname</td>
+                    <td>@user.Profile.Age</td>
+                    <td>@user.Profile.Email</td>
+                    <td>@user.Profile.PhoneNumber</td>            
                 </tr>
             }
         </tbody>
