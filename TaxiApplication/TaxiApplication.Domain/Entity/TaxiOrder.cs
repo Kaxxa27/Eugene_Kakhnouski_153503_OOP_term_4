@@ -6,7 +6,7 @@ public class TaxiOrder : Entity
 	public Tariff Tariff { get; set; }
 	public int NumberOfPassengers { get; set; }
 	public string DriverGenderPreference { get; set; } = string.Empty;
-	public string PaymentMethod { get; set; } = string.Empty;
+	public PaymentMethod PaymentMethod { get; set; }
     public int ClientId { get; set; }
 
     #region IsProperties

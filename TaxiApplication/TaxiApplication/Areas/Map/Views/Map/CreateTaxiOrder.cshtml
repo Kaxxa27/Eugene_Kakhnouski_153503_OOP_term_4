@@ -28,8 +28,8 @@
 			<span asp-validation-for="Route.EndLocation" />
 		</p>
 		<p>
-			<select asp-for="Order.Tariff" asp-items="Html.GetEnumSelectList<TaxiApplication.Domain.Enum.Tariff>()">
-			</select>
+			<select asp-for="Order.Tariff" asp-items="Html.GetEnumSelectList<TaxiApplication.Domain.Enum.Tariff>()"></select>	
+			<select asp-for="Order.PaymentMethod" asp-items="Html.GetEnumSelectList<TaxiApplication.Domain.Enum.PaymentMethod>()"></select>
 		</p>
 		@if (Model is not null)
 		{
