@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TaxiApplication.Domain.Entity.User>
+@{
+	Layout = "_Layout";
+	ViewBag.Title = "UserService";
+}
+
+<div>
+	@foreach (var item in @Model)
+	{
+		<p>
+			<label>ФИО:@item.Name @item.Surname</label>
+		</p>
+		<p>
+			<label>Почта:@item.Email</label>
+		</p>
+		<p>
+			<label>Телефон: @item.PhoneNumber</label>
+		</p>
+	}
+</div>
