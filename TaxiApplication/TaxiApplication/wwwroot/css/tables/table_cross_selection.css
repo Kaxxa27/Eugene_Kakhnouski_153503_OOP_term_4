@@ -1,4 +1,12 @@
-﻿.table-cross-sel-div {
+﻿.container-for-table-cross-sel {
+    display: flex;
+    justify-content: center;
+    height: 100vh; /* устанавливаем высоту для контейнера */
+}
+
+
+.table-cross-sel-div {
+    position: center;
     width: auto;
     margin-top: 50px;
 }
