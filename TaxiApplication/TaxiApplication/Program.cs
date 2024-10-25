@@ -15,15 +15,20 @@ public class Program
 	public static void Main(string[] args)
 	{
 		var builder = WebApplication.CreateBuilder(args);
-
+		
+		// MVC support 
 		builder.Services.AddControllersWithViews();
 
+		// Repositories registration.
 		builder.Services.AddScoped<IRepository<User>, EfRepository<User>>();
+		builder.Services.AddScoped<IRepository<Client>, EfRepository<Client>>();
 		builder.Services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
-		builder.Services.AddScoped<IUserService, UserService>();
+		// Services registration. 
+		builder.Services.AddScoped<IClientService, ClientService>();
 		builder.Services.AddScoped<IBaseResponse<User>, BaseResponse<User>>();
-
+		
+		// Database configuration.
 		var connection = builder.Configuration.GetConnectionString("SQLiteConnection");
 		builder.Services.AddDbContext<TaxiApplicationDbContext>(options =>
 		{
@@ -34,6 +39,7 @@ public class Program
 
 		var app = builder.Build();
 
+		// Mapping routes to controllers.
 		app.MapControllerRoute(
 		 name: "User",
 		 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
