@@ -6,6 +6,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using TaxiApplication.Domain.Entity;
+using TaxiApplication.Domain.Entity.Profile;
 using TaxiApplication.Domain.Enum;
 
 namespace TaxiApplication.DAL;
@@ -13,6 +14,9 @@ namespace TaxiApplication.DAL;
 public class TaxiApplicationDbContext : DbContext
 {
 	public DbSet<User> Users { get; set; }
+	public DbSet<Client> Clients { get; set; }
+	public DbSet<ClientProfile> clientProfiles { get; set; }
+	public DbSet<UserProfile> userProfiles { get; set; }
 	public TaxiApplicationDbContext(DbContextOptions<TaxiApplicationDbContext> dbContextOptions) : base(dbContextOptions)
 	{
 		//Database.EnsureDeleted();
@@ -23,15 +27,23 @@ public class TaxiApplicationDbContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		
+		//modelBuilder.Entity<User>()
+		//.HasIndex(u => u.Login)
+		//.IsUnique();
+
 		User Admin = new User
 		{
 			Id = 1,
-			Name = "Евгений",
-			Surname = "Кахновский",
-			Email = "Kaxxa2927@mail.ru",
+			//Profile = new ClientProfile 
+			//{
+			//    ClientId = 1,
+			//	Name = "Евгений",
+			//	Surname = "Кахновский",
+			//	Email = "Kaxxa2927@mail.ru",
+			//	PhoneNumber = "+375297778899"
+			//},	
+			Login = "Kaxxa",
 			Password = "12345",
-			PhoneNumber = "+375297778899",
 			Role = Role.Admin
 		};
 
