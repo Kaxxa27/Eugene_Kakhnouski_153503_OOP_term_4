@@ -1,15 +1,32 @@
-﻿namespace TaxiApplication.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
+using TaxiApplication.Domain;
 
+namespace TaxiApplication.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
 public class HomeController : Controller
 {
+    private readonly IUnitOfWork _repository;
 
-	IUnitOfWork _repository;
-	public HomeController(IUnitOfWork repository)
-	{
-		_repository = repository;
-	}
-	public IActionResult Index() => View();
+    public HomeController(IUnitOfWork repository)
+    {
+        _repository = repository;
+    }
 
-	[HttpGet]
-	public IActionResult AddItem() => View();
+    /// <summary>
+    /// Отображает главную страницу приложения.
+    /// </summary>
+    /// <returns>Представление главной страницы.</returns>
+    [HttpGet("index")]
+    [ProducesResponseType( 200)]
+    public IActionResult Index() => View();
+
+    /// <summary>
+    /// Отображает страницу для добавления нового элемента.
+    /// </summary>
+    /// <returns>Представление для добавления элемента.</returns>
+    [HttpGet("add-item")]
+    [ProducesResponseType( 200)]
+    public IActionResult AddItem() => View();
 }
