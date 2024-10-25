@@ -1,6 +1,7 @@
-﻿.image-options{
-    height: 300px;
-    width: 300px;
+﻿.image-options {
+    margin-top: 15px;
+    height: 330px;
+    width: 380px;
     border: 3px solid black;
 }
 
@@ -10,9 +11,10 @@
 }
 
 button.photo-btn {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
-    width: 10%;
+    width: 100%;
+    margin-top: 15px;
     border-radius: 10px;
     background-color: darkgrey;
     color: black;

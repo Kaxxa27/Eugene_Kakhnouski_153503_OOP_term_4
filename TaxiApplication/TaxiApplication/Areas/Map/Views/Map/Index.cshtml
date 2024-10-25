@@ -288,7 +288,7 @@
 							<form  asp-controller="Client" asp-action="SaveTaxiOrder" asp-area="Client" method="post">
 								<input hidden name="taxiOrderViewModel" value="@JsonSerializer.Serialize(Model)" />
 								<button class="btn-block confirm-btn" type="submit" value="Подтвердить заказ">Подтвердить заказ</button>
-								<button class="btn-block cancel-btn" type="button" onclick="location.href='@Url.Action("CreateTaxiOrder", "Client", new { area = "Client" })'">Отменить заказ</button>
+							<button class="btn-block cancel-map-btn" type="button" onclick="location.href='@Url.Action("CreateTaxiOrder", "Client", new { area = "Client" })'">Отменить заказ</button>
 							</form>			
 						</div>
 					</div>
