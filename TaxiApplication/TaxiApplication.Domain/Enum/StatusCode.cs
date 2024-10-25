@@ -18,6 +18,14 @@ public enum StatusCode
 	UserNotFound = 100,
 	UserAlredyExist = 110,
 	
+	/// <summary>
+	/// Authorizations errors 2**
+	/// 0-1*	-> 0 -> WrongPassword
+	///			-> 1 -> LoginAlredyExist
+	/// </summary>
+	WrongPassword = 200,
+	LoginAlredyExist = 210,
+
 	AllError = 404,
 	OK = 777,
 
