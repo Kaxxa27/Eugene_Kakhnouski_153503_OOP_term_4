@@ -4,8 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiApplication", "TaxiApplication\TaxiApplication.csproj", "{58BF073B-9C5D-43DE-82A9-5AEDFC1B1F9C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8169F47A-A047-4E97-AB19-5516A7957DEF} = {8169F47A-A047-4E97-AB19-5516A7957DEF}
+		{C3115603-4646-495E-B1B2-8AA40B831E8C} = {C3115603-4646-495E-B1B2-8AA40B831E8C}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiApplication.Domain", "TaxiApplication.Domain\TaxiApplication.Domain.csproj", "{8169F47A-A047-4E97-AB19-5516A7957DEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiApplication.Domain", "TaxiApplication.Domain\TaxiApplication.Domain.csproj", "{8169F47A-A047-4E97-AB19-5516A7957DEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiApplication.DAL", "TaxiApplication.DAL\TaxiApplication.DAL.csproj", "{C3115603-4646-495E-B1B2-8AA40B831E8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,10 @@ Global
 		{8169F47A-A047-4E97-AB19-5516A7957DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8169F47A-A047-4E97-AB19-5516A7957DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8169F47A-A047-4E97-AB19-5516A7957DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3115603-4646-495E-B1B2-8AA40B831E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3115603-4646-495E-B1B2-8AA40B831E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3115603-4646-495E-B1B2-8AA40B831E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3115603-4646-495E-B1B2-8AA40B831E8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
