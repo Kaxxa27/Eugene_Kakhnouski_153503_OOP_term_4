@@ -27,7 +27,10 @@ namespace TaxiApplication.WEB.Areas.User.Controllers
         public IActionResult AddUser() { return View(); }
 
         [HttpGet]
-        public IActionResult UpdateUser() { return View(); }
+        public IActionResult UpdateUser(int id) 
+        { 
+            return View(_userService.FirstOrDefault(x => x.Id == id).Result.Data); 
+        }
 
         [HttpGet]
         public IActionResult DeleteUser() { return View(); }  

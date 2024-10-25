@@ -9,23 +9,23 @@
 	<div>
 		<p>
 			<label asp-for="Name"></label>
-			<input asp-for="Name" value="@" />
+			<input asp-for="Name" value="@Model.Name" />
 		</p>
 		<p>
 			<label asp-for="Surname"></label>
-			<input asp-for="Surname" />
+			<input asp-for="Surname" value="@Model.Surname" />
 		</p>
 		<p>
 			<label asp-for="PhoneNumber"></label>
-			<input asp-for="PhoneNumber" />
+			<input asp-for="PhoneNumber" value="@Model.PhoneNumber" />
 		</p>
 		<p>
 			<label asp-for="Email"></label>
-			<input asp-for="Email" />
+			<input asp-for="Email" value="@Model.Email" />
 		</p>
 		<p>
 			<label asp-for="Password"></label>
-			<input asp-for="Password" />
+			<input asp-for="Password" value="@Model.Password" />
 		</p>
 		<p>
 			<input type="submit" value="Update User" />
