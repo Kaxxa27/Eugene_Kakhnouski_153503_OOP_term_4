@@ -21,11 +21,14 @@ public class Program
 		// Repositories registration.
 		builder.Services.AddScoped<IRepository<User>, EfRepository<User>>();
 		builder.Services.AddScoped<IRepository<Client>, EfRepository<Client>>();
+		builder.Services.AddScoped<IRepository<TaxiOrder>, EfRepository<TaxiOrder>>();
+		builder.Services.AddScoped<IRepository<TaxiApplication.Domain.Entity.Route.Route>, EfRepository<TaxiApplication.Domain.Entity.Route.Route>>();
 		builder.Services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
 		// Services registration. 
 		builder.Services.AddScoped<IClientService, ClientService>();
 		builder.Services.AddScoped<IAccountService, AccountService>();
+		builder.Services.AddScoped<TaxiOrderService>();
 		builder.Services.AddScoped<IBaseResponse<User>, BaseResponse<User>>();
 		
 		// Database configuration.
@@ -44,8 +47,8 @@ public class Program
 		app.UseAuthorization();
 
 
-		// Mapping routes to controllers.
-		app.MapControllerRoute(
+        // Mapping routes to controllers.
+        app.MapControllerRoute(
 		 name: "area",
 		 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 		 );

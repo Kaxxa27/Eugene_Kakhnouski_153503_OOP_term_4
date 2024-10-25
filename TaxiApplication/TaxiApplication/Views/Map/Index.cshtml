@@ -1,5 +1,5 @@
-﻿@*@model TaxiApplication.WEB.Controllers.LocationLists*@
-@model TaxiApplication.WEB.Controllers.Locations
+﻿@using Microsoft.JSInterop;
+@model TaxiApplication.Domain.Entity.TaxiOrder
 @{
 	ViewBag.Title = "Map";
 }
@@ -14,6 +14,7 @@
 
 		var map;
 		var directionsManager;
+		var route;
 		// Создание карты с bign key
 		function CreateMap() {
 			map = new Microsoft.Maps.Map('#myMap', {
@@ -32,15 +33,16 @@
 
 				directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
 		
-				//var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: 'Start', location: new Microsoft.Maps.Location(/*53.897378, 27.438627*/53.890219, 27.427219) });
-				//var endWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: 'End', location: new Microsoft.Maps.Location(/*53.937364, 27.604317*/53.903243, 27.4265) });
 				var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: start });
 				var endWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: end });
 
 				directionsManager.addWaypoint(startWaypoint);
 				directionsManager.addWaypoint(endWaypoint);
 
-				directionsManager.calculateDirections();
+				//Add event handlers to directions manager.
+                Microsoft.Maps.Events.addHandler(directionsManager, 'directionsUpdated', directionsUpdated);
+
+				directionsManager.calculateDirections();						
 			} else {
 				//Load the Directions module and create a directions manager
 				Microsoft.Maps.loadModule('Microsoft.Maps.Directions', {
@@ -49,12 +51,35 @@
 						directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
 						//Perfrom route logic
 						GetRoute(start, end);
-
 					}
 				});
 			}
 		}
 
+		//Функция подсчета времени и дистанции и вывода их на html-element
+		function directionsUpdated(e) {
+			//Get the current route index.
+			var routeIdx = directionsManager.getRequestOptions().routeIndex;
+
+			//Get the distance of the route, rounded to 2 decimal places.
+			var distance = Math.round(e.routeSummary[routeIdx].distance * 100) / 100;
+
+			//Get the distance units used to calculate the route.
+			var units = directionsManager.getRequestOptions().distanceUnit;
+			var distanceUnits = '';
+
+			if (units == Microsoft.Maps.Directions.DistanceUnit.km) {
+				distanceUnits = 'km'
+			} else {
+				//Must be in miles
+				distanceUnits = 'miles'
+			}
+
+			//Time is in seconds, convert to minutes and round off.
+			var time = Math.round(e.routeSummary[routeIdx].timeWithTraffic / 60);
+
+			document.getElementById('routeInfoPanel').innerHTML = 'Distance: ' + distance + ' ' + distanceUnits + '<br/>Time with Traffic: ' + time + ' minutes';
+		}
 		// Очистка всех точек на карте и маршрутов
 		function ClearMap() {
 
@@ -64,6 +89,7 @@
 			}
 		}
 
+		// Добавление точек на карту
 		function AddMarkers(map, locations) {
 			for (var i = 0; i < locations.length; i++) {
 
@@ -223,18 +249,16 @@
 			//Карта создается всегда, чтобы она была видна пользователю
 			if(map == null)
 				var map = CreateMap();
-			@if (Model.Start != null && Model.End != null)
-				{
+			@if (Model != null && Model.CurrentRoute != null && Model.CurrentRoute.StartLocation != null && Model.CurrentRoute.EndLocation != null)
+			{
 					<text>
-						var start = @Html.Raw(Json.Serialize(Model.Start));
-						var end = @Html.Raw(Json.Serialize(Model.End));
-						GetRoute(start, end);
-						//var location = @Html.Raw(Json.Serialize(Model));
-						//AddMarkers(map, locations);
-				</text>
-			}
-		}			
-	</script>
+						var startLocation = @Html.Raw(Json.Serialize(Model.CurrentRoute.StartLocation));
+						var endLocation = @Html.Raw(Json.Serialize(Model.CurrentRoute.EndLocation));
+						GetRoute(startLocation, endLocation);
+					</text>
+			}	
+		}
+	</script>	
 
 	<!-- Reference to the Bing Maps SDK -->
 	<script type='text/javascript'
@@ -242,15 +266,17 @@
 			async defer></script>
 
 
-
-	@*	<script type='text/javascript'
-	src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJAinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJ'
-	async defer></script>*@
-
 </head>
 <body>
+
+	<div>
+		<p>
+			<label id="routeInfoPanel">This will be distance and time.</label>
+		</p>
+	</div>
 	@* Встраивание частичного представления, для ввода данных о маршруте*@
-	@await Html.PartialAsync("BuildRoute")
+	@await Html.PartialAsync("CreateTaxiOrder")
+
 	<div id="myMap" style="position:relative;width:1800px;height:600px;"></div>
 </body>
 </html>
