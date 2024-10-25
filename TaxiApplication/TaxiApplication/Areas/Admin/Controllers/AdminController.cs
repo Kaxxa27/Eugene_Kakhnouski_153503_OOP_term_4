@@ -6,7 +6,7 @@ namespace TaxiApplication.WEB.Areas.User.Controllers
 {
     [Area("Admin")]
     [ApiController]
-    [Route("api/[area]/[controller]")]
+    [Route("[area]/[controller]")]
     public class AdminController : Controller
     {
         private readonly IClientService _clientService;
@@ -24,7 +24,7 @@ namespace TaxiApplication.WEB.Areas.User.Controllers
         /// Отображает главную страницу администраторов со списком клиентов.
         /// </summary>
         /// <returns>Представление списка клиентов.</returns>
-        [HttpGet("index")]
+        [HttpGet("")]
         [ProducesResponseType(typeof(IEnumerable<Client>), 200)]
         public IActionResult Index()
         {

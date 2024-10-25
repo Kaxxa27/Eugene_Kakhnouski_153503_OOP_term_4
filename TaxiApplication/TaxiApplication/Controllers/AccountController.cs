@@ -3,7 +3,7 @@
 namespace TaxiApplication.WEB.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class AccountController : Controller
 {
     private readonly IAccountService _accountService;

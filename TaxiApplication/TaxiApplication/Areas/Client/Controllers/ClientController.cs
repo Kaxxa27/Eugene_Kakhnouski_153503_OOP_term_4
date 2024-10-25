@@ -2,7 +2,7 @@
 
 [Area("Client")]
 [ApiController]
-[Route("api/[area]/[controller]")]
+[Route("[area]/[controller]")]
 public class ClientController : Controller
 {
     private readonly ITaxiOrderService _taxiOrderService;
@@ -119,8 +119,6 @@ public class ClientController : Controller
     /// </summary>
     /// <returns>Представление страницы создания заказа такси.</returns>
     [HttpGet("create-taxi-order")]
-    [ProducesResponseType(302)]
-    [ProducesResponseType(200)]
     public IActionResult CreateTaxiOrder()
     {
         if (CheckUserStatus()) return RedirectToAction("Logout", "Account", new { area = "" });
@@ -132,8 +130,7 @@ public class ClientController : Controller
     /// </summary>
     /// <param name="taxiOrderViewModel">Модель заказа такси.</param>
     /// <returns>Перенаправление на страницу карты или обратно на страницу создания заказа в случае ошибки.</returns>
-    [HttpPost("create-taxi-order")]
-    [ProducesResponseType(302)]
+    [HttpPost("")]
     public async Task<IActionResult> CreateTaxiOrder(TaxiOrderViewModel taxiOrderViewModel)
     {
         if (CheckUserStatus()) return RedirectToAction("Logout", "Account", new { area = "" });

@@ -2,14 +2,13 @@
 
 [Area("Map")]
 [ApiController]
-[Route("api/[area]/[controller]")]
 public class MapController : Controller
 {
     /// <summary>
     /// Отображает страницу карты с данными о такси.
     /// </summary>
     /// <returns>Представление страницы карты с данными о заказе такси.</returns>
-    [HttpGet("index")]
+    [HttpGet("")]
     [ProducesResponseType(typeof(TaxiOrderViewModel), 200)]
     public IActionResult Index()
     {

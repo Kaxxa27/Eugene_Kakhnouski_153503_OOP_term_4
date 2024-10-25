@@ -4,7 +4,7 @@ using TaxiApplication.Domain;
 namespace TaxiApplication.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class HomeController : Controller
 {
     private readonly IUnitOfWork _repository;
@@ -18,7 +18,7 @@ public class HomeController : Controller
     /// Отображает главную страницу приложения.
     /// </summary>
     /// <returns>Представление главной страницы.</returns>
-    [HttpGet("index")]
+    [HttpGet("")]
     [ProducesResponseType( 200)]
     public IActionResult Index() => View();
 
