@@ -36,6 +36,10 @@
 			<input asp-for="Password" />
 		</p>
 		<p>
+			<label asp-for="PasswordConfirm"></label>
+			<input asp-for="PasswordConfirm" />
+		</p>
+		<p>
 			<input type="submit" value="Add Client" />
 		</p>
 		@*<input type="hidden" name="Profile.Id" value="@(Model?.Profile?.Id ?? 0)">
