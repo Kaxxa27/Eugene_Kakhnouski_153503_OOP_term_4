@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>@ViewData["Title"] - TaxiApp</title>
+</head>
+
+<body>
+	<header>
+		<div>
+			<p>
+				<a asp-controller="User" asp-action="GetAllUsers" asp-area="User">GetAllUsersLink</a>
+				<a asp-controller="Home" asp-action="AddItem" asp-area="">AddUser</a>
+			</p>
+		</div>
+	</header>
+
+	<div>
+		<main role="main">
+			@RenderBody()
+		</main>
+	</div>
+</body>
+
+</html>
