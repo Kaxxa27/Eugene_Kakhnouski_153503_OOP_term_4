@@ -11,7 +11,7 @@ namespace TaxiApplication.Domain.Enum;
 public enum Role
 {
 	[Display(Name = "Пользователь")]
-	User = 0,
+	Client = 0,
 	[Display(Name = "Водитель")]
 	Driver = 1,
 	[Display(Name = "Админ")]
