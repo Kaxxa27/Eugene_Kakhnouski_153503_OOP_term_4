@@ -1,6 +1,6 @@
 ﻿namespace TaxiApplication.BLL.Implementations;
 
-public class TaxiOrderService
+public class TaxiOrderService : ITaxiOrderService
 {
 	private readonly IUnitOfWork _unitOfWork;
 
@@ -34,7 +34,7 @@ public class TaxiOrderService
 
 	}
 
-	public async Task<IBaseResponse<bool>> DeleteOrder(int id)
+	public async Task<IBaseResponse<bool>> DeleteTaxiOrder(int id)
 	{
 		try
 		{
@@ -115,7 +115,7 @@ public class TaxiOrderService
 		}
 	}
 
-	public async Task<IBaseResponse<IEnumerable<TaxiOrder>>> GetAllOrders()
+	public async Task<IBaseResponse<IEnumerable<TaxiOrder>>> GetAllTaxiOrders()
 	{
 		try
 		{
@@ -163,7 +163,7 @@ public class TaxiOrderService
 		}
 	}
 
-	public async Task<IBaseResponse<TaxiOrder>> GetOrder(int id)
+	public async Task<IBaseResponse<TaxiOrder>> GetTaxiOrder(int id)
 	{
 		try
 		{
@@ -198,7 +198,7 @@ public class TaxiOrderService
 		}
 	}
 
-	public async Task<IBaseResponse<bool>> UpdateOrder(TaxiOrder taxiOrder)
+	public async Task<IBaseResponse<bool>> UpdateTaxiOrder(TaxiOrder taxiOrder)
 	{
 		try
 		{
@@ -233,5 +233,4 @@ public class TaxiOrderService
 			};
 		}
 	}
-
 }
