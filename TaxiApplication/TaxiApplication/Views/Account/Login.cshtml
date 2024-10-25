@@ -5,45 +5,36 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/TaxiApplication.WEB.styles.css" asp-append-version="true" />
 
 
 <form asp-action="Login" asp-controller="Account" asp-area="">
-    <div class="max-width-200 mx-auto">
-        <div class="form-floating mb-3 ">
-            <input asp-for="Login" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label asp-for="Login" for="floatingInput">Login</label>
-        </div>
-        <div class="form-floating ">
-            <input asp-for="Password" type="password" class="form-control " id="floatingPassword" placeholder="Password">
-            <label asp-for="Password" for="floatingPassword">Password</label>
-        </div>
-@*        <p>
+    <div class="login-form">
 
-           <label asp-for="Login"></label>
-            <input asp-for="Login"  />
-      
-        </p>
-        <p>
- 
-            <label asp-for="Password"></label>
-            <input asp-for="Password" />  
-        </p>*@
+        <h1 class="login-style-size-50 ">Sign in</h1>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Login" class="form-control" id="LoginInput" placeholder="test@gmail.com" autocomplete="off">
+            <label class="login-style-for-labels" asp-for="Login" for="LoginInput">Login</label>
+            <span asp-validation-for="Login" class="login-style-for-errors"></span>
+        </div>
+
+        <div class="form-floating ">
+            <input asp-for="Password" type="password" class="form-control " id="PasswordInput" placeholder="Password" autocomplete="off">
+            <label class="login-style-for-labels" asp-for="Password" for="PasswordInput">Password</label>
+            <div asp-validation-summary="ModelOnly" class="login-style-for-errors"></div>
+            <span asp-validation-for="Password" class="login-style-for-errors"></span>
+        </div>
+
         <p>
             <div>
-                <input class="btn btn-outline-success" type="submit" value="Login" />
-                <button class="btn btn-outline-secondary" type="button" onclick="location.href='@Url.Action("Registration", "Account")'">Registration</button>
+                <button class="btn-block sign-in-btn" type="submit" value="Sign in">Sign in</button>
+                <button class="btn-block sign-up-btn" type="button" onclick="location.href='@Url.Action("Registration", "Account")'">Sign up</button>
             </div>
-
-            @*Группа кнопок*@
-            @*<div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic example">*@       
-            @*</div>*@
-         
         </p>
     </div>
 </form>
-<div asp-validation-summary="All"></div>
+@*<div asp-validation-summary="All"></div>*@
 

@@ -27,7 +27,7 @@ public class AccountService : IAccountService
             {
                 return new BaseResponse<ClaimsPrincipal>()
                 {
-                    Description = "Неверный пароль.",
+                    Description = "Неверный логин или пароль.",
                     StatusCode = StatusCode.WrongPassword
                 };
             }
