@@ -1,6 +1,4 @@
 ﻿@using System.Text.Json;
-@*@using Microsoft.JSInterop;
-@model TaxiApplication.Domain.Entity.TaxiOrder*@
 @model TaxiApplication.BLL.ViewModels.TaxiOrderViewModel
 @{
 	ViewBag.Title = "Map";
@@ -17,6 +15,7 @@
 			var map;
 			var directionsManager;
 			var route;
+
 			// Создание карты с bign key
 			function CreateMap() {
 				map = new Microsoft.Maps.Map('#myMap', {
@@ -31,8 +30,8 @@
 
 				ClearMap();
 				if (directionsManager) {
-					// Set Route Mode to driving
 
+					// Set Route Mode to driving
 					directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
 		
 					var startWaypoint = new Microsoft.Maps.Directions.Waypoint({ address: start });
@@ -46,6 +45,7 @@
 
 					directionsManager.calculateDirections();						
 				} else {
+
 					//Load the Directions module and create a directions manager
 					Microsoft.Maps.loadModule('Microsoft.Maps.Directions', {
 						callback: function () {
@@ -80,9 +80,6 @@
 				//Time is in seconds, convert to minutes and round off.
 				var time = Math.round(e.routeSummary[routeIdx].timeWithTraffic / 60);
 
-				//document.getElementById('routeInfoPanel').innerHTML = 'Distance: ' + distance + ' ' + distanceUnits + '<br/>Time with Traffic: ' + time + ' minutes';
-				//document.getElementById('distanceLabel').innerHTML = distance;
-				//document.getElementById('timeLabel').innerHTML = time;
 			}
 			// Очистка всех точек на карте и маршрутов
 			function ClearMap() {
@@ -130,18 +127,6 @@
 				}
 			}
 
-			//function pushpinClicked(e) {
-			//	//Make sure the infobox has metadata to display.
-			//	if (e.target.metadata) {
-			//		//Set the infobox options with the metadata of the pushpin.
-			//		infobox.setOptions({
-			//			location: e.target.getLocation(),
-			//			title: e.target.metadata.title,
-			//			description: e.target.metadata.description,
-			//			visible: true
-			//		});
-			//	}
-			//}
 			function pushpinMouseOver(e) {
 				//Make sure the infobox has metadata to display.
 				if (e.target.metadata) {
@@ -189,9 +174,8 @@
 				context.beginPath();
 				context.arc(25, 25, 5, 0, 2 * Math.PI);
 				context.strokeStyle = "black";
-				//ctx.closePath();
+
 				context.fill();
-				//ctx.stroke();
 				context.stroke();
 
 				context.beginPath();
@@ -217,29 +201,6 @@
 				context.lineTo(30, 45);
 				context.strokeStyle = "black";
 				context.stroke();
-				//var ctx = c.getContext('2d');
-
-				////Offset the canvas such that we will rotate around the center of our arrow
-				//ctx.translate(c.width * 0.5, c.height * 0.5);
-
-				////Rotate the canvas by the desired heading
-				//ctx.rotate(heading * Math.PI / 180);
-
-				////Return the canvas offset back to it's original position
-				//ctx.translate(-c.width * 0.5, -c.height * 0.5);
-
-				//ctx.fillStyle = '#f00';
-
-				////Draw a path in the shape of an arrow.
-				//ctx.beginPath();
-				//ctx.moveTo(12, 0);
-				//ctx.lineTo(5, 20);
-				//ctx.lineTo(12, 15);
-				//ctx.lineTo(19, 20);
-				//ctx.lineTo(12, 0);
-				//ctx.closePath();
-				//ctx.fill();
-				//ctx.stroke();
 
 				//Generate the base64 image URL from the canvas.
 				return c.toDataURL();
@@ -262,15 +223,6 @@
 						GetRoute(startLocation, endLocation);
 					</text>
 				}
-				@*@if (Model != null && Model.CurrentRoute != null && Model.CurrentRoute.StartLocation != null && Model.CurrentRoute.EndLocation != null)
-				//{
-				//		<text>
-				//			var startLocation = @Html.Raw(Json.Serialize(Model.CurrentRoute.StartLocation));
-				//			var endLocation = @Html.Raw(Json.Serialize(Model.CurrentRoute.EndLocation));
-				//			GetRoute(startLocation, endLocation);
-				//		</text>
-				//}
-				*@
 			}
 		</script>	
 
