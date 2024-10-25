@@ -1,0 +1,87 @@
+﻿@model TaxiApplication.WEB.Controllers.LocationLists
+@{
+	ViewBag.Title = "Map";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+
+	<script type='text/javascript'>
+		function GetMap() {
+			var map = new Microsoft.Maps.Map('#myMap');
+	
+		}
+
+		////// Create the infobox for the pushpin
+		////var infobox = null;
+
+		////declare addMarker function
+		//function addMarker(latitude, longitude/*, title, description, pid*/) {
+		//    var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(latitude, longitude), { color: 'green' });
+
+		//    //Create custom Pushpin
+		//    var pin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(latitude, longitude), {
+		//        title: 'Dom',
+		//        subTitle: 'Lobanka',
+		//        text: '5'
+		//    });
+
+		//    //Add the pushpin to the map
+		//    map.entities.push(pin);
+
+		//    //infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {
+		//    //    visible: false
+		//    //});
+
+		//    //marker.metadata = {
+		//    //    id: pid,
+		//    //    title: title,
+		//    //    description: description
+		//    //};
+
+		//    //Microsoft.Maps.Events.addHandler(marker, 'mouseout', hideInfobox);
+		//    //Microsoft.Maps.Events.addHandler(marker, 'mouseover', showInfobox);
+
+		//    //infobox.setMap(map);
+		//    //map.entities.push(marker);
+		//    //marker.setOptions({ enableHoverStyle: true });
+		//};
+
+		//function showInfobox(e) {
+		//    if (e.target.metadata) {
+		//        infobox.setOptions({
+		//            location: e.target.getLocation(),
+		//            title: e.target.metadata.title,
+		//            description: e.target.metadata.description,
+		//            visible: true
+		//        });
+		//    }
+		//}
+
+		//function hideInfobox(e) {
+		//    infobox.setOptions({ visible: false });
+		//}
+
+		@if (Model.LocationList != null)
+		{
+			foreach (var item in Model.LocationList.ToList())
+			{
+				// @:addMarker(@item.Latitude, @item.Longitude, @item.Title, @item.Description, @item.LocationId);
+				@:addMarker(@item.Latitude, @item.Longitude);
+			}
+		}
+	</script>
+
+	
+	<!-- Reference to the Bing Maps SDK -->
+	    <script type='text/javascript'
+				src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJAinPDDIFfN3bBR1qYpHkXZ14Mjxu3aVJF2D7tuHeu6aJlzH5YnWeq618SasshvFJ'
+				async defer></script>
+</head>
+<body>
+	<div id="myMap" style="position:relative;width:1800px;height:600px;"></div>
+</body>
+</html>
