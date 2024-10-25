@@ -1,20 +1,34 @@
 ﻿@model IEnumerable<TaxiApplication.Domain.Entity.User>
 @{
-	Layout = "_Layout";
-	ViewBag.Title = "UserService";
+	ViewBag.Title = "GetAllUsers";
 }
 
 <div>
-	@foreach (var item in @Model)
-	{
-		<p>
-			<label>ФИО:@item.Name @item.Surname</label>
-		</p>
-		<p>
-			<label>Почта:@item.Email</label>
-		</p>
-		<p>
-			<label>Телефон: @item.PhoneNumber</label>
-		</p>
-	}
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Password</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.ToList())
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@user.Password</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
