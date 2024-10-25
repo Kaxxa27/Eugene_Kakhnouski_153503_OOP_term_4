@@ -56,6 +56,11 @@ public class MapController : Controller
 			taxiOrderViewModel.Route.Time = TimeSpan.FromSeconds(result!.RouteLegs[0].TravelDuration);
 			taxiOrderViewModel.Route.Distance = result.RouteLegs[0].TravelDistance;
 
+			// Пофиксить, убрать ViewModel и сделать работу только с Model, но пока что так XD
+			TaxiOrder testTaxiOrder = taxiOrderViewModel.Order;
+			testTaxiOrder.CurrentRoute = taxiOrderViewModel.Route;
+			await _taxiOrderService.CalculatePrice(testTaxiOrder);
+
 			// Проверка на корректность заказа
 			if (taxiOrderViewModel.Route.Distance == 0 && taxiOrderViewModel.Route.Time.TotalSeconds == 0)
 			{

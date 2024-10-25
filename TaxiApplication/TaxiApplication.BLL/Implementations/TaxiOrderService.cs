@@ -1,9 +1,14 @@
-﻿namespace TaxiApplication.BLL.Implementations;
+﻿using System.Formats.Tar;
+using TaxiApplication.Domain.Enum;
+
+namespace TaxiApplication.BLL.Implementations;
 
 public class TaxiOrderService : ITaxiOrderService
 {
 	private readonly IUnitOfWork _unitOfWork;
 
+	// Цена за километр в рублях.
+	private readonly double FixedPrice = 1;
 	public TaxiOrderService(IUnitOfWork unitOfWork)
 	{
 		_unitOfWork = unitOfWork;
@@ -278,6 +283,38 @@ public class TaxiOrderService : ITaxiOrderService
 		{
 			await Console.Out.WriteLineAsync($"[TaxiOrderService.GetAllClientTaxiOrders] error: {ex.Message})");
 			return new BaseResponse<IEnumerable<TaxiOrder>>()
+			{
+				StatusCode = StatusCode.AllError,
+				Description = $"Внутренняя ошибка: {ex.Message}"
+			};
+		}
+	}
+
+	public async Task<IBaseResponse<TaxiOrder>> CalculatePrice(TaxiOrder taxiOrder)
+	{
+		try
+		{
+			double tariff = taxiOrder.Tariff switch
+			{
+				Tariff.Economy => 1.1,
+				Tariff.Comfort => 1.3,
+				Tariff.Business => 1.7,
+				Tariff.VIP => 2,
+				_ => throw new NotImplementedException()
+			};
+
+			taxiOrder.Price = Math.Round(FixedPrice * taxiOrder.CurrentRoute.Distance * tariff, 2);
+
+			return new BaseResponse<TaxiOrder>()
+			{
+				Data = taxiOrder,
+				StatusCode = StatusCode.OK
+			};
+		}
+		catch (Exception ex)
+		{
+			await Console.Out.WriteLineAsync($"[TaxiOrderService.CalculatePrice] error: {ex.Message})");
+			return new BaseResponse<TaxiOrder>()
 			{
 				StatusCode = StatusCode.AllError,
 				Description = $"Внутренняя ошибка: {ex.Message}"

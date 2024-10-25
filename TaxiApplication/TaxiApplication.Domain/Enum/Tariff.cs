@@ -2,8 +2,8 @@
 
 public enum Tariff
 {
-	Economy,
-	Comfort,
-	Business,
-	VIP
+    Economy,
+    Comfort,
+    Business,
+    VIP
 }

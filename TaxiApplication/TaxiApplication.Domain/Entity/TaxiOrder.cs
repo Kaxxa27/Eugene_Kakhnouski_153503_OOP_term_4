@@ -4,7 +4,8 @@ public class TaxiOrder : Entity
 {
 	public Route.Route? CurrentRoute { get; set; }
 	public Tariff Tariff { get; set; }
-	[Required]
+    public double Price { get; set; }
+    [Required]
 	[Range(1, 5)]
 	public int NumberOfPassengers { get; set; }
 	public DriverGender DriverGenderPreference { get; set; }
