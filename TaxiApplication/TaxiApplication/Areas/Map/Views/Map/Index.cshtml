@@ -295,12 +295,12 @@
 			<p><label>Дистанция маршрута: @Model.Route.Distance km</label></p>
 			<p><label>Время на поездку: @Model.Route.Time</label></p>
 			<p>
-			<form asp-controller="Map" asp-action="SaveTaxiOrder" asp-area="" method="post">
+			<form asp-controller="Map" asp-action="SaveTaxiOrder" asp-area="Map" method="post">
 				<input hidden name="taxiOrderViewModel" value="@JsonSerializer.Serialize(Model)" />
 				<input type="submit" value="Подтвердить" />
 			</form>
 
-			<form asp-controller="Map" asp-action="CreateTaxiOrder" asp-area="" method="get">
+			<form asp-controller="Map" asp-action="CreateTaxiOrder" asp-area="Map" method="get">
 				<button type="submit">Отменить</button>
 			</form>
 			</p>

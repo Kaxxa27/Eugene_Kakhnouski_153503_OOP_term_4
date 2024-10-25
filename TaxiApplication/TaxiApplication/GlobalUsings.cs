@@ -11,3 +11,6 @@ global using TaxiApplication.BLL.Implementations;
 global using TaxiApplication.DAL;
 global using TaxiApplication.DAL.Repositories;
 global using TaxiApplication.Domain.Responce.Interfaces;
+global using BingMapsRESTToolkit;
+global using System.Security.Claims;
+global using System.Text.Json;

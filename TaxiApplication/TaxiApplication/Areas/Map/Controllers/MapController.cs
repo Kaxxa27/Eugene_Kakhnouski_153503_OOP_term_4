@@ -1,13 +1,6 @@
-﻿using BingMapsRESTToolkit;
-using Microsoft.AspNetCore.Server.IIS.Core;
-using Microsoft.Extensions.Options;
-using System.Security.Claims;
-using System.Text.Json;
-using System.Web.Helpers;
-using TaxiApplication.BLL.ViewModels;
+﻿namespace TaxiApplication.WEB.Areas.Map.Controllers;
 
-namespace TaxiApplication.WEB.Controllers;
-
+[Area("Map")]
 public class MapController : Controller
 {
 	// BingMapsKey
@@ -23,13 +16,13 @@ public class MapController : Controller
 	{
 		// Десериализация TaxiViewModel
 		var deserializedViewModel = JsonSerializer.Deserialize<TaxiOrderViewModel>((string)TempData["taxiOrderViewModel_JSON"]!);
-		
+
 		//TaxiOrderViewModel viewModel = deserializedObject! as TaxiOrderViewModel
 		TaxiOrderViewModel viewModel = deserializedViewModel!;
-	
+
 		if (viewModel is null) return View();
 		return View(viewModel);
-    }
+	}
 
 	[HttpGet]
 	public IActionResult CreateTaxiOrder() => View();
@@ -47,14 +40,14 @@ public class MapController : Controller
 				DistanceUnits = DistanceUnitType.Kilometers
 			},
 			Waypoints = new List<SimpleWaypoint>
-			{	
+			{
 				new SimpleWaypoint(taxiOrderViewModel.Route.StartLocation),
 				new SimpleWaypoint(taxiOrderViewModel.Route.EndLocation)
 			}
 		};
 
 		//BingMapsRESTToolkit
-		
+
 		try
 		{
 			var response = await ServiceManager.GetResponseAsync(request);
@@ -100,12 +93,12 @@ public class MapController : Controller
 
 			await _taxiOrderService.AddTaxiOrder(taxiOrder);
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Index", "Home", new { area = "" });
 		}
 		catch (Exception ex)
 		{
 			await Console.Out.WriteLineAsync($"[MapController.SaveTaxiOrder] error: {ex.Message})");
 			return RedirectToAction("CreateTaxiOrder", "Map");
-		}		
+		}
 	}
 }
