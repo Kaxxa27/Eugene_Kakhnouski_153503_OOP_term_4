@@ -194,4 +194,38 @@ public class UserService : IUserService
 			};
 		}
 	}
+
+    public async Task<IBaseResponse<bool>> UpdateUser(User user)
+    {
+        try
+        {
+            var RealUser = _unitOfWork.UserRepository.FirstOrDefaultAsync(x => x.Name == user.Name).Result;
+            if (RealUser is null)
+            {
+                return new BaseResponse<bool>()
+                {
+                    Description = "Пользователь отсутсвует.",
+                    StatusCode = StatusCode.UserNotFound
+                };
+            }
+			await _unitOfWork.UserRepository.UpdateAsync(user);
+
+            return new BaseResponse<bool>()
+            {
+                Data = true,
+                StatusCode = StatusCode.OK
+            };
+
+        }
+        catch (Exception ex)
+        {
+            await Console.Out.WriteLineAsync($"[UserService.GetAllUsers] error: {ex.Message})");
+			return new BaseResponse<bool>()
+			{
+				Data = false,
+                StatusCode = StatusCode.AllError,
+                Description = $"Внутренняя ошибка: {ex.Message}"
+            };
+        }
+    }
 }

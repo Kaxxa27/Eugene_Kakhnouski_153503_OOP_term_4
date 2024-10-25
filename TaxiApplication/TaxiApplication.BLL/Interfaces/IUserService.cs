@@ -10,4 +10,5 @@ public interface IUserService
 	Task<IBaseResponse<User>> AddUser(User user);
 	Task<IBaseResponse<bool>> DeleteUser(int id);
 	Task<IBaseResponse<User>> FirstOrDefault(Func<User, bool> filter);
+    Task<IBaseResponse<bool>> UpdateUser(User user);
 }
