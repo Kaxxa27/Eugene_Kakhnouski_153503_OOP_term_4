@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<TaxiApplication.Domain.Entity.TaxiOrder>
 @{
-    ViewBag.Title = "GetAllOrders";
+    ViewBag.Title = "GetAllOrdersForAdmin";
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,7 @@
                         <th>Оплата</th>
                         <th>Кол-во пассажиров</th>
                         <th>Гендер водителя</th>
+                        <th>Удалить</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,13 +48,18 @@
                             <td>@taxiOrder.PaymentMethod</td>
                             <td>@taxiOrder.NumberOfPassengers</td>
                             <td>@taxiOrder.DriverGenderPreference</td>
+                            <td>
+                                <form asp-controller="Admin" asp-action="DeleteOrder" asp-route-id="@taxiOrder.Id">
+                                    <button class="standart-btn" type="submit">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-   
+
 </body>
 </html>
 

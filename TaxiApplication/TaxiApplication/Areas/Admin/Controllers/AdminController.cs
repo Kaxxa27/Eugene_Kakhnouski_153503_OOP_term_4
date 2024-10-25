@@ -4,10 +4,12 @@
     public class AdminController : Controller
     {
         private readonly IClientService _clientService;
+        private readonly ITaxiOrderService _taxiOrderService;
 
-        public AdminController(IClientService clientService)
+        public AdminController(IClientService clientService, ITaxiOrderService taxiOrderService)
         {
-			_clientService = clientService;
+            _clientService = clientService;
+            _taxiOrderService = taxiOrderService;
         }
 
         #region HttpGet
@@ -34,6 +36,12 @@
 
         [HttpGet]
         public IActionResult FindClient() { return View(); }
+
+        [HttpGet]
+        public IActionResult GetTaxiOrdersForAdmin(int userId)
+        {
+            return View(_taxiOrderService.GetAllClientTaxiOrders(userId).Result.Data);
+        }
         #endregion
 
         #region HttpPost
@@ -62,6 +70,19 @@
             if (response.StatusCode == Domain.Enum.StatusCode.OK)
             {
                 return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteOrder(int id)
+        {
+            var response = await _taxiOrderService.DeleteTaxiOrder(id);
+
+            if (response.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                return RedirectToAction("GetTaxiOrdersForAdmin");
             }
             return View();
         }
