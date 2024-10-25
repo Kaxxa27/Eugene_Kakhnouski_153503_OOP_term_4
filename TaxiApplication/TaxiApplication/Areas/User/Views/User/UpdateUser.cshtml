@@ -1,0 +1,37 @@
+﻿@model TaxiApplication.Domain.Entity.User
+@{
+	ViewBag.Title = "UpdateUser";
+}
+
+<h1> Update User</h1>
+
+<form asp-action="UpdateUser" asp-controller="User">
+	<div>
+		<p>
+			<label asp-for="Name"></label>
+			<input asp-for="Name" />
+		</p>
+		<p>
+			<label asp-for="Surname"></label>
+			<input asp-for="Surname" />
+		</p>
+		<p>
+			<label asp-for="PhoneNumber"></label>
+			<input asp-for="PhoneNumber" />
+		</p>
+		<p>
+			<label asp-for="Email"></label>
+			<input asp-for="Email" />
+		</p>
+		<p>
+			<label asp-for="Password"></label>
+			<input asp-for="Password" />
+		</p>
+		<p>
+			<input type="submit" value="Update User" />
+		</p>
+		<input hidden="hidden" name="Role" value="@TaxiApplication.Domain.Enum.Role.User" />
+	</div>
+</form>
+
+<div asp-validation-summary="All"></div>
