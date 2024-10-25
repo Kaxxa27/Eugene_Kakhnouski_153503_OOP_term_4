@@ -18,6 +18,7 @@
 .login-form {
     width: auto;
     margin-top: 150px;
+    border-radius: 30px;
     padding: 100px;
     background: linear-gradient(to bottom right, #ffe259, #ffa751);
 }

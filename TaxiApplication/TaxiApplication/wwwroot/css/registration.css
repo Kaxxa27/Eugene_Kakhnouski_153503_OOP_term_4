@@ -1,0 +1,12 @@
+﻿.registration-form {
+    width: 900px;
+    margin: 70px auto 0;
+    border-radius: 30px;
+    padding: 80px;
+    background: linear-gradient(to bottom right, #ffe259, #ffa751);
+}
+
+.form-name-surname {
+    display: inline-block;
+    margin-right: 10px;
+}
