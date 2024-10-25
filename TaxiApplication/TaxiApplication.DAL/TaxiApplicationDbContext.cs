@@ -39,7 +39,9 @@ public class TaxiApplicationDbContext : DbContext
 
 
 		modelBuilder.Entity<User>().HasData(Admin);
-	
+		modelBuilder.Entity<TaxiOrder>()
+		   .HasIndex(p => p.ClientId)
+		   .IsUnique(false);
 	}
 
 	//protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
