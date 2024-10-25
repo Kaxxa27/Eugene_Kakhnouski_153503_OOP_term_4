@@ -90,7 +90,8 @@ public class AccountService : IAccountService
     {
         var claims = new List<Claim>()
         {
-            new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+			new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
             new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.ToString())
         };
         return new ClaimsPrincipal(new ClaimsIdentity(claims, "Cookies"));
