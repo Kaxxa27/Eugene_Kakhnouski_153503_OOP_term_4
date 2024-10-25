@@ -292,8 +292,8 @@
 		<div>
 			<p><label>Начальная точка: @Model.Route!.StartLocation</label></p>
 			<p><label>Конечная точка: @Model.Route.EndLocation</label></p>
-			<p><label>Дистанция маршрута: @Model.Route.Distance</label></p>
-			<p><label>Время на поездку: @Model.Route.Time.Hour</label></p>
+			<p><label>Дистанция маршрута: @Model.Route.Distance km</label></p>
+			<p><label>Время на поездку: @Model.Route.Time</label></p>
 			<p>
 			<form asp-controller="Map" asp-action="SaveTaxiOrder" asp-area="" method="post">
 				<input hidden name="taxiOrderViewModel" value="@JsonSerializer.Serialize(Model)" />

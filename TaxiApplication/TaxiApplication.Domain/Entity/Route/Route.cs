@@ -9,7 +9,7 @@ public class Route : Entity
 	public string StartLocation { get; set; }
 	[Required(ErrorMessage = "Укажите конечную точку.")]
 	public string EndLocation { get; set; }
-    public DateTime Time { get; set; }
+    public TimeSpan Time { get; set; }
     public double Distance { get; set; }
 	public int TaxiOrderId { get; set; }
 }

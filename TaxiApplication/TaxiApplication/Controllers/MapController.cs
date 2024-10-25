@@ -31,8 +31,9 @@ public class MapController : Controller
 		return View(viewModel);
     }
 
-    [HttpGet]
+	[HttpGet]
 	public IActionResult CreateTaxiOrder() => View();
+
 	[HttpPost]
 	public async Task<IActionResult> CreateTaxiOrder(TaxiOrderViewModel taxiOrderViewModel)
 	{
@@ -53,16 +54,30 @@ public class MapController : Controller
 		};
 
 		//BingMapsRESTToolkit
-		var response = await ServiceManager.GetResponseAsync(request);
-		var result = response.ResourceSets[0]?.Resources[0] as BingMapsRESTToolkit.Route;
+		
+		try
+		{
+			var response = await ServiceManager.GetResponseAsync(request);
+			var result = response.ResourceSets[0]?.Resources[0] as BingMapsRESTToolkit.Route;
 
-		taxiOrderViewModel.Route.Time = new DateTime().AddSeconds(result!.RouteLegs[0].TravelDuration);
-		taxiOrderViewModel.Route.Distance = result.RouteLegs[0].TravelDistance;
+			taxiOrderViewModel.Route.Time = TimeSpan.FromSeconds(result!.RouteLegs[0].TravelDuration);
+			taxiOrderViewModel.Route.Distance = result.RouteLegs[0].TravelDistance;
 
-		var json = JsonSerializer.Serialize(taxiOrderViewModel);
+			// Проверка на корректность заказа
+			if (taxiOrderViewModel.Route.Distance == 0 && taxiOrderViewModel.Route.Time.TotalSeconds == 0)
+			{
+				return RedirectToAction("CreateTaxiOrder");
+			}
 
-		TempData["taxiOrderViewModel_JSON"] = json;
-		return RedirectToAction("Index");
+			var json = JsonSerializer.Serialize(taxiOrderViewModel);
+
+			TempData["taxiOrderViewModel_JSON"] = json;
+			return RedirectToAction("Index");
+		}
+		catch (Exception ex)
+		{
+			return RedirectToAction("CreateTaxiOrder");
+		}
 	}
 
 	[HttpGet]
