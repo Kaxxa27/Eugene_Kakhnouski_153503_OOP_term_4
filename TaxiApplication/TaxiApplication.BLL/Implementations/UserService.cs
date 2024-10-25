@@ -199,7 +199,7 @@ public class UserService : IUserService
     {
         try
         {
-            var RealUser = _unitOfWork.UserRepository.FirstOrDefaultAsync(x => x.Name == user.Name).Result;
+            var RealUser = _unitOfWork.UserRepository.FirstOrDefaultAsync(x => x.Id == user.Id).Result;
             if (RealUser is null)
             {
                 return new BaseResponse<bool>()

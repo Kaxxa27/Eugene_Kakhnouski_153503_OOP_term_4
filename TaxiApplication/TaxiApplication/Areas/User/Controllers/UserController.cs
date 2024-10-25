@@ -30,7 +30,10 @@ namespace TaxiApplication.WEB.Areas.User.Controllers
         public IActionResult UpdateUser() { return View(); }
 
         [HttpGet]
-        public IActionResult DeleteUser() { return View(_userService.GetAllUsers().Result.Data); }
+        public IActionResult DeleteUser() { return View(); }  
+        
+        [HttpGet]
+        public IActionResult AdminPanel() { return View(_userService.GetAllUsers().Result.Data); }
 
         [HttpGet]
         public IActionResult FindUser() { return View(); }
