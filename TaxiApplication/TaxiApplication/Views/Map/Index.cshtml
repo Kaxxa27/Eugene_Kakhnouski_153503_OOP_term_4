@@ -1,5 +1,7 @@
-﻿@using Microsoft.JSInterop;
-@model TaxiApplication.Domain.Entity.TaxiOrder
+﻿@using System.Text.Json;
+@*@using Microsoft.JSInterop;
+@model TaxiApplication.Domain.Entity.TaxiOrder*@
+@model TaxiApplication.BLL.ViewModels.TaxiOrderViewModel
 @{
 	ViewBag.Title = "Map";
 }
@@ -78,7 +80,9 @@
 			//Time is in seconds, convert to minutes and round off.
 			var time = Math.round(e.routeSummary[routeIdx].timeWithTraffic / 60);
 
-			document.getElementById('routeInfoPanel').innerHTML = 'Distance: ' + distance + ' ' + distanceUnits + '<br/>Time with Traffic: ' + time + ' minutes';
+			//document.getElementById('routeInfoPanel').innerHTML = 'Distance: ' + distance + ' ' + distanceUnits + '<br/>Time with Traffic: ' + time + ' minutes';
+			//document.getElementById('distanceLabel').innerHTML = distance;
+			//document.getElementById('timeLabel').innerHTML = time;
 		}
 		// Очистка всех точек на карте и маршрутов
 		function ClearMap() {
@@ -249,14 +253,24 @@
 			//Карта создается всегда, чтобы она была видна пользователю
 			if(map == null)
 				var map = CreateMap();
-			@if (Model != null && Model.CurrentRoute != null && Model.CurrentRoute.StartLocation != null && Model.CurrentRoute.EndLocation != null)
+
+			@if (Model != null && Model.Route != null && Model.Route.StartLocation != null && Model.Route.EndLocation != null)
 			{
-					<text>
-						var startLocation = @Html.Raw(Json.Serialize(Model.CurrentRoute.StartLocation));
-						var endLocation = @Html.Raw(Json.Serialize(Model.CurrentRoute.EndLocation));
-						GetRoute(startLocation, endLocation);
-					</text>
-			}	
+				<text>
+					var startLocation = @Html.Raw(Json.Serialize(Model.Route.StartLocation));
+					var endLocation = @Html.Raw(Json.Serialize(Model.Route.EndLocation));
+					GetRoute(startLocation, endLocation);
+				</text>
+			}
+			@*@if (Model != null && Model.CurrentRoute != null && Model.CurrentRoute.StartLocation != null && Model.CurrentRoute.EndLocation != null)
+			//{
+			//		<text>
+			//			var startLocation = @Html.Raw(Json.Serialize(Model.CurrentRoute.StartLocation));
+			//			var endLocation = @Html.Raw(Json.Serialize(Model.CurrentRoute.EndLocation));
+			//			GetRoute(startLocation, endLocation);
+			//		</text>
+			//}
+			*@
 		}
 	</script>	
 
@@ -268,14 +282,76 @@
 
 </head>
 <body>
-
-	<div>
-		<p>
-			<label id="routeInfoPanel">This will be distance and time.</label>
-		</p>
-	</div>
 	@* Встраивание частичного представления, для ввода данных о маршруте*@
-	@await Html.PartialAsync("CreateTaxiOrder")
+	@*@await Html.PartialAsync("CreateTaxiOrder")*@
+
+	<h1>Подтверждение маршрута: </h1>
+
+	@if(Model is not null)
+	{	
+		<div>
+			<p><label>Начальная точка: @Model.Route!.StartLocation</label></p>
+			<p><label>Конечная точка: @Model.Route.EndLocation</label></p>
+			<p><label>Дистанция маршрута: @Model.Route.Distance</label></p>
+			<p><label>Время на поездку: @Model.Route.Time.Hour</label></p>
+			<p>
+			<form asp-controller="Map" asp-action="SaveTaxiOrder" asp-area="" method="post">
+				<input hidden name="taxiOrderViewModel" value="@JsonSerializer.Serialize(Model)" />
+				<input type="submit" value="Подтвердить" />
+			</form>
+
+			<form asp-controller="Map" asp-action="CreateTaxiOrder" asp-area="" method="get">
+				<button type="submit">Отменить</button>
+			</form>
+			</p>
+		</div>	
+	}
+
+	<fieldset>
+		<legend>Ваши предпочтения:</legend>
+		<table>
+			<tr>
+				<td>
+					<div>
+						<input type="checkbox" asp-for="Order.IsPetFriendly" value="Order.IsPetFriendly">
+						<label asp-for="Order.IsPetFriendly"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" asp-for="Order.IsMusicPreferenceNeeded" value="Order.IsMusicPreferenceNeeded">
+						<label asp-for="Order.IsMusicPreferenceNeeded"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" asp-for="Order.IsChildSeatNeeded" value="Order.IsChildSeatNeeded">
+						<label asp-for="Order.IsChildSeatNeeded"></label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<input type="checkbox" asp-for="Order.IsAirConditioningNeeded" value="Order.IsAirConditioningNeeded">
+						<label asp-for="Order.IsAirConditioningNeeded"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" asp-for="Order.IsBaggageAssistanceNeeded" value="Order.IsBaggageAssistanceNeeded">
+						<label asp-for="Order.IsBaggageAssistanceNeeded"></label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<input type="checkbox" asp-for="Order.IsMeetAndGreetNeeded" value="Order.IsMeetAndGreetNeeded">
+						<label asp-for="Order.IsMeetAndGreetNeeded"></label>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
 
 	<div id="myMap" style="position:relative;width:1800px;height:600px;"></div>
 </body>
