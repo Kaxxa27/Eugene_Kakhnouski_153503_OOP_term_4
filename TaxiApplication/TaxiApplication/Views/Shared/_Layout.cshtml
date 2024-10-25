@@ -5,11 +5,13 @@
 <head>
 	<meta charset="utf-8" />
 	<title>@ViewData["Title"] - TaxiApp</title>
+
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/TaxiApplication.WEB.styles.css" asp-append-version="true" />
 </head>
-
 <body>
-
-	<a asp-controller="Home" asp-action="Index" asp-area="">Главная</a>
+	
 
 	<div>
 		<p>
@@ -22,6 +24,10 @@
 			}
 			else
 			{
+				<div>
+					<a asp-controller="Home" asp-action="Index" asp-area="">Главная</a>
+
+				</div>
 				<a asp-controller="Account" asp-action="Logout" asp-route-area="">Выйти</a>
 				<div>		
 					<p>
@@ -56,14 +62,24 @@
 	</div>
 
 	<div>
-		<main role="main">
+		<main role="main" class="pb-3">
 			@RenderBody()
 		</main>
 	</div>
+@*	<div>
+		<main role="main">
+			@RenderBody()
+		</main>
+	</div>*@
 
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 
 	@*Стиль для всех таблиц class="table"*@
-	<style>
+	@*<style>
 		.table {
 			width: 100%;
 			border: none;
@@ -127,7 +143,7 @@
 			border-radius: 0px;
 			border-bottom-right-radius: 20px;
 		}
-	</style>
+	</style>*@
 </body>
 
 </html>

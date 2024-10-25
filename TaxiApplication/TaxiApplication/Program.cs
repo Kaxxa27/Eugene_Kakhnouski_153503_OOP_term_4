@@ -46,9 +46,12 @@ public class Program
 		app.UseAuthentication();
 		app.UseAuthorization();
 
+		// For wwwroot
+		app.UseStaticFiles();
 
-        // Mapping routes to controllers.
-        app.MapControllerRoute(
+
+		// Mapping routes to controllers.
+		app.MapControllerRoute(
 		 name: "area",
 		 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 		 );
