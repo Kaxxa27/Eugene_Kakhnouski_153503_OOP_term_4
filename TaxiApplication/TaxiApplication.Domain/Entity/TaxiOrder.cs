@@ -6,9 +6,10 @@ public class TaxiOrder : Entity
 	public int NumberOfPassengers { get; set; }
 	public string DriverGenderPreference { get; set; } = string.Empty;
 	public string PaymentMethod { get; set; } = string.Empty;
+    public int ClientId { get; set; }
 
-	#region IsProperties
-	public bool IsWheelchairAccessible { get; set; }
+    #region IsProperties
+    public bool IsWheelchairAccessible { get; set; }
 	public bool IsPetFriendly { get; set; }
 	public bool IsRoundTrip { get; set; }
 	public bool IsChildSeatNeeded { get; set; }
