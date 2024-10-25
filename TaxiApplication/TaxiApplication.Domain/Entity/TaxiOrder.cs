@@ -3,6 +3,7 @@
 public class TaxiOrder : Entity
 {
 	public Route.Route CurrentRoute { get; set; }
+	public Tariff Tariff { get; set; }
 	public int NumberOfPassengers { get; set; }
 	public string DriverGenderPreference { get; set; } = string.Empty;
 	public string PaymentMethod { get; set; } = string.Empty;

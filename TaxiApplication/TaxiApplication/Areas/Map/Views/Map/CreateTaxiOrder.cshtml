@@ -27,6 +27,10 @@
 			<input asp-for="Route.EndLocation" data-val-required="Введите конечную точку маршрута." />
 			<span asp-validation-for="Route.EndLocation" />
 		</p>
+		<p>
+			<select asp-for="Order.Tariff" asp-items="Html.GetEnumSelectList<TaxiApplication.Domain.Enum.Tariff>()">
+			</select>
+		</p>
 		@if (Model is not null)
 		{
 			<input hidden="hidden" name="Route.TaxiOrderId" value="@Model.Id" />
