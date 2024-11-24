@@ -14,13 +14,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiApplication.Domain", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiApplication.DAL", "TaxiApplication.DAL\TaxiApplication.DAL.csproj", "{C3115603-4646-495E-B1B2-8AA40B831E8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiApplication.BLL", "TaxiApplication.BLL\TaxiApplication.BLL.csproj", "{7339057E-AED8-4C52-99F5-4538FB807EF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiApplication.BLL", "TaxiApplication.BLL\TaxiApplication.BLL.csproj", "{7339057E-AED8-4C52-99F5-4538FB807EF9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8169F47A-A047-4E97-AB19-5516A7957DEF} = {8169F47A-A047-4E97-AB19-5516A7957DEF}
 		{C3115603-4646-495E-B1B2-8AA40B831E8C} = {C3115603-4646-495E-B1B2-8AA40B831E8C}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiApplication.Tests", "TaxiApplication.Tests\TaxiApplication.Tests.csproj", "{AF6291D6-5D4E-4D9E-A371-E9F1E1CD9F17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +42,6 @@ Global
 		{7339057E-AED8-4C52-99F5-4538FB807EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7339057E-AED8-4C52-99F5-4538FB807EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7339057E-AED8-4C52-99F5-4538FB807EF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF6291D6-5D4E-4D9E-A371-E9F1E1CD9F17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF6291D6-5D4E-4D9E-A371-E9F1E1CD9F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF6291D6-5D4E-4D9E-A371-E9F1E1CD9F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF6291D6-5D4E-4D9E-A371-E9F1E1CD9F17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
