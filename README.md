@@ -53,7 +53,7 @@ __The application provides the following features:__
 ![Admin Interface](media/Statistic/TAXI_TIMELINE_DONE.png)
 
 ## Tickets
-![User Interface](media/Statistic/TICKETS_DONE.html)
+![User Interface](media/Statistic/TICKETS.png)
 
 # Application Interface
 
