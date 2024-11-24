@@ -6,7 +6,7 @@ __The development was carried out using ASP.NET Core MVC.__
 
 This project is a course work on the discipline "TRPO" completed during the 7th semester.
 
-KA & KO TAXI ON PRODUCTION -> WELCOME -> [KA_&_KO_TAXI]([https://github.com/Kaxxa27](http://ka-ko-taxi-belarussian-aggregator.somee.com/))
+KA & KO TAXI ON PRODUCTION -> WELCOME -> [KA_&_KO_TAXI]([http://ka-ko-taxi-belarussian-aggregator.somee.com/])
 
 
 ## Content
