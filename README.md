@@ -47,6 +47,13 @@ __The application provides the following features:__
 
 
 
+# MVP Statistics
+
+## JIRA Timeline
+![Admin Interface](media/Statistic/TAXI_TIMELINE_DONE.png)
+
+## Tickets
+![User Interface](media/Statistic/TICKETS_DONE.html)
 
 # Application Interface
 
