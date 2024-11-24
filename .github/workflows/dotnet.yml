@@ -21,6 +21,7 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore TaxiApplication/TaxiApplication.sln
     - name: Build
-      run: dotnet build --no-restore ./TaxiApplication/TaxiApplication.sln
+      run: dotnet build --no-restore TaxiApplication/TaxiApplication.sln
+
