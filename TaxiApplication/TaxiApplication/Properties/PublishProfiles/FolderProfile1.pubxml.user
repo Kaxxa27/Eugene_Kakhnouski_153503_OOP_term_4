@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Lenovo\Desktop\PRODUCTION TRPO\DEPLOY</_PublishTargetUrl>
+    <History>True|2024-11-24T14:13:00.1987786Z;True|2024-11-24T17:05:08.4662001+03:00;True|2024-11-24T17:04:13.1320144+03:00;</History>
+    <LastFailureDetails />
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="SQLiteConnection">
+      <Value>Data Source=DataBase\TaxiApplicationDataBase.db</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
